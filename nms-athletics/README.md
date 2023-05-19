@@ -8,4 +8,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
  npm install react-bootstrap bootstrap
 
+ firebase deploy --only hosting:nms-athletic
+
+ ## Hosting URL
+ https://nms-athletics.web.app
+
+ 
+
 
