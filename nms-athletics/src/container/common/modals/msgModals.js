@@ -36,15 +36,14 @@ const  MessageModal =(props) => {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>{popupObj?.title ? popupObj.title : ""}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          I will not close if you click outside me. Don not even try to press
-          escape key.
+        {popupObj?.content ? popupObj.content : "Default MESSAGE"}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={onClose}>
-            Close
+          {popupObj?.btn1 ? popupObj.btn1 : "OK"}
           </Button>
           {/* <Button variant="primary">Understood</Button> */}
         </Modal.Footer>

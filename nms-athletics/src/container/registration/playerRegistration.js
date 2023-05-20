@@ -61,7 +61,7 @@ function PlayerRegistration() {
     let tempErrObj = errObj;
     console.log('playerObj', playerObj)
     Object.keys(tempErrObj).map((key) =>{
-      if((tempErrObj[key].tempErrObj && tempErrObj[key].err) || !tempErrObj[key].touched ){
+      if((tempErrObj[key].touched && tempErrObj[key].err) || !tempErrObj[key].touched ){
         invalidForm = true
       }
       if(!tempErrObj[key].touched) { 
@@ -75,6 +75,7 @@ function PlayerRegistration() {
       dispatch(addPlayer(playerObj));
       // dispatch(getPlayerList());
       setNavigationPath("player-list");
+      setPopupObj({title:"SUCCESS", content: "Player added successfully"})
       setMsgPopupFlag(true)
     }
     console.log('invalidForm :', invalidForm)
