@@ -12,3 +12,4 @@ export const formatAppDate = (date) => {
 
     return [year, month, day].join('-');
 }
+

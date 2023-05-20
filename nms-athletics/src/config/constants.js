@@ -165,13 +165,21 @@ export const U_19 = "U_19";
 
 export const initPlayerData = {
     name:"",
-    adharNumber:0,
+    adharNumber:"",
     clubName: "",
-    dob:formatAppDate(new Date),
-    playerCategory:playerCategories[0],
-    events:EVENTS["U_12"],
+    dob:"",
+    playerCategory:"",
+    events:[],
     gender:"MALE",
-    upi:0,
-    mobile:0,
+    upi:"",
+    mobile:"",
     selectedEvents: []
+}
+
+export const initError = {
+    name:{touched:false,err: false},
+    adharNumber: {touched:false,err: false},
+    dob:{touched:false,err: false},
+    upi:{touched:false,err: false},
+    mobile:{touched:false,err: false},
 }

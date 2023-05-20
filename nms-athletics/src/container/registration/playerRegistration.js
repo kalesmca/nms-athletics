@@ -4,15 +4,14 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import "./registration.scss";
-import { U_12_TIME, U_14_TIME, U_17_TIME, U_19_TIME, initPlayerData, EVENTS } from '../../config/constants';
+import { U_12_TIME, U_14_TIME, U_17_TIME, U_19_TIME, initPlayerData, EVENTS, initError } from '../../config/constants';
 import { formatAppDate } from '../../config/utils';
 import Alert from 'react-bootstrap/Alert';
 
 function PlayerRegistration() {
 
   const [playerObj, setPlayerObj] = useState(initPlayerData);
-  const [eventList, setEventList] = useState(initPlayerData.events)
-
+  const [errObj, setErrObj] = useState(initError)
   useEffect(() => {
     console.log('playerObj', playerObj)
 
@@ -51,8 +50,24 @@ function PlayerRegistration() {
    
    
   }
+  
   const submit = () => {
+    let invalidForm = false 
+    let tempErrObj = errObj;
     console.log('playerObj', playerObj)
+    Object.keys(tempErrObj).map((key) =>{
+      if((tempErrObj[key].tempErrObj && tempErrObj[key].err) || !tempErrObj[key].touched ){
+        invalidForm = true
+      }
+      if(!tempErrObj[key].touched) { 
+        tempErrObj[key].err = true;
+        tempErrObj[key].touched = true;
+      }
+    })
+    if(invalidForm) { 
+      setErrObj({...errObj, ...tempErrObj})
+    }
+    console.log('invalidForm :', invalidForm)
   }
   const eventChange = (e, eIndex, event) =>{
     let tempObj = playerObj;
@@ -83,36 +98,62 @@ function PlayerRegistration() {
     setPlayerObj({...playerObj, ...tempObj})
   }
 
+  const getValidation = (key) =>{
+    let tempErrObj = errObj;
+    tempErrObj[key].touched = true;
+    if(key==='mobile' || key==='upi' ){
+      tempErrObj[key].err = !playerObj[key] || playerObj[key]?.toString().length !=10 ? true : false
+    } else if(key === "adharNumber") {
+      tempErrObj[key].err = !playerObj[key] || playerObj[key]?.toString().length !=12 ? true : false
+    } else {
+      tempErrObj[key].err = !playerObj[key] ? true : false
+    }
+    setErrObj({...errObj, ...tempErrObj})
+    
+  }
+
   return (
-    <Form>
+    
+    <Form >
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Player Name</Form.Label>
           <Form.Control type="text" placeholder="Enter palyer Name" value={playerObj.name}
-            onChange={(e) => { setPlayerObj({ ...playerObj, name: e.target.value }) }}
+             onChange={(e) => { setPlayerObj({ ...playerObj, name: e.target.value }) }} onBlur={(e)=> {getValidation("name")}}
           />
+          {
+            errObj.name.err && errObj.name.touched && <div className='err'> Valid Player Name</div>
+          }
+          
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label>Aadhar Number</Form.Label>
-          <Form.Control type="number" placeholder="Player Aadhar Number" value={playerObj.adharNumber}
-            onChange={(e) => { setPlayerObj({ ...playerObj, adharNumber: e.target.value }) }}
+          <Form.Control type="number" placeholder="Player Aadhar Number" value={playerObj.adharNumber} 
+            onChange={(e) => { setPlayerObj({ ...playerObj, adharNumber: e.target.value }) }} onBlur={(e)=> {getValidation("adharNumber")}}
           />
+          {
+            errObj.adharNumber.err && errObj.adharNumber.touched && <div className='err'> 12 Digit AdharNumber</div>
+          }
         </Form.Group>
       </Row>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Club/Scholl Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter palyer Club/Scholl Name" value={playerObj.clubName}
-            onChange={(e) => { setPlayerObj({ ...playerObj, clubName: e.target.value }) }}
+          <Form.Control type="text" placeholder="Optional" value={playerObj.clubName}
+            onChange={(e) => { setPlayerObj({ ...playerObj, clubName: e.target.value }) }} 
           />
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label>Date of Birth</Form.Label>
-          <Form.Control type="date" placeholder="DOB as per Aadhar card" value={playerObj.dob}
+          <Form.Control type="date" placeholder="DOB as per Aadhar card" value={playerObj.dob} onBlur={(e)=> {getValidation("dob")}}
             onChange={(e) => { dateChage(e) }}
+            
           />
+          {
+            errObj.dob.touched && errObj.dob.err && <div className='err'> Please select Date of Birth</div>
+          }
         </Form.Group>
       </Row>
 
@@ -125,6 +166,7 @@ function PlayerRegistration() {
             name="group1"
             type={"radio"}
             id={`inline-${"Male"}-2`}
+            checked={playerObj.gender === "MALE" ? true : false}
             onClick={() => { setPlayerObj({ ...playerObj, gender: "MALE" }) }}
           />
           <Form.Check
@@ -132,6 +174,7 @@ function PlayerRegistration() {
             label="FEMALE"
             name="group1"
             type={"radio"}
+            checked={playerObj.gender === "FEMALE" ? true : false}
             onClick={() => { setPlayerObj({ ...playerObj, gender: "FEMALE" }) }}
             id={`inline-${'FeMale'}-2`}
           />
@@ -149,7 +192,7 @@ function PlayerRegistration() {
 
       <Form.Group className="mb-3" controlId="formGridAddress1">
         <Form.Label className='player-category'> Player Category:: </Form.Label>
-        <Form.Label className='player-category-selection'> {playerObj.playerCategory} </Form.Label>
+        <Form.Label className='player-category-selection'> {playerObj.playerCategory ? playerObj.playerCategory : "Select your Date of Birth"} </Form.Label>
       </Form.Group>
 
       <Row className="mb-3">
@@ -159,9 +202,7 @@ function PlayerRegistration() {
               return (
                 <Form.Check index={eIndex} label={event.eventName} checked={event.selection}
                   disabled={event.disable} type="checkbox" onChange={(e) => { eventChange(e, eIndex, event) }} />
-
               )
-
             })
           }
         </Col>
@@ -169,22 +210,30 @@ function PlayerRegistration() {
 
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>UPI Number</Form.Label>
-          <Form.Control type="number" placeholder="Google-Pay/PhonePee/Paytm" value={playerObj.upi}
+          <Form.Label>UPI Mobile Number</Form.Label>
+          <Form.Control type="number" placeholder="Google-Pay Number" value={playerObj.upi} onBlur={(e)=> {getValidation("upi")}}
             onChange={(e) => { setPlayerObj({ ...playerObj, upi: e.target.value }) }}
           />
+          {
+            errObj.upi.touched && errObj.upi.err && <div className='err'> Valid GPay Number</div>
+          }
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label>Contact Mobile</Form.Label>
           <Form.Control type="number" placeholder="Mobile Number" value={playerObj.mobile}
-            onChange={(e) => { setPlayerObj({ ...playerObj, mobile: e.target.value }) }}
+            onChange={(e) => { setPlayerObj({ ...playerObj, mobile: e.target.value }) }} onBlur={(e)=> {getValidation("mobile")}}
           />
+          {
+            errObj.mobile.touched && errObj.mobile.err && <div className='err'> Valid mobile Number</div>
+          }
         </Form.Group>
+
+        
       </Row>
 
 
-      <Button variant="primary" type="submit" onClick={() => { submit() }}>
+      <Button variant="primary" onClick={() => { submit() }}>
         Submit
       </Button>
     </Form>
