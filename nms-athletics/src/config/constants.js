@@ -1,4 +1,9 @@
 import {formatAppDate} from './utils';
+export const DB = {
+    players : "players"
+}
+
+
 export const EVENTS = {
     U_12:[{
         eventName: "100M",

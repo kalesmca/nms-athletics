@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -7,11 +7,16 @@ import "./registration.scss";
 import { U_12_TIME, U_14_TIME, U_17_TIME, U_19_TIME, initPlayerData, EVENTS, initError } from '../../config/constants';
 import { formatAppDate } from '../../config/utils';
 import Alert from 'react-bootstrap/Alert';
+import {addPlayer, getPlayerList} from '../../redux/actions/players';
+import { useDispatch, useSelector } from 'react-redux';
+import {PopupContext } from '../../config/context';
 
 function PlayerRegistration() {
 
   const [playerObj, setPlayerObj] = useState(initPlayerData);
   const [errObj, setErrObj] = useState(initError)
+  const dispatch = useDispatch()
+  const {setMsgPopupFlag, setNavigationPath,popupObj, setPopupObj} = useContext(PopupContext);
   useEffect(() => {
     console.log('playerObj', playerObj)
 
@@ -66,6 +71,11 @@ function PlayerRegistration() {
     })
     if(invalidForm) { 
       setErrObj({...errObj, ...tempErrObj})
+    } else {
+      dispatch(addPlayer(playerObj));
+      // dispatch(getPlayerList());
+      setNavigationPath("player-list");
+      setMsgPopupFlag(true)
     }
     console.log('invalidForm :', invalidForm)
   }
@@ -113,8 +123,8 @@ function PlayerRegistration() {
   }
 
   return (
-    
-    <Form >
+    <div>
+      <Form >
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Player Name</Form.Label>
@@ -237,6 +247,9 @@ function PlayerRegistration() {
         Submit
       </Button>
     </Form>
+    </div>
+    
+    
   );
 }
 
