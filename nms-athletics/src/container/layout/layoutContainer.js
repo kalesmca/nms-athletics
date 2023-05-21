@@ -3,7 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 import HeaderComponent from "./header";
 import { useNavigate } from 'react-router-dom';
 import "./header.scss";
-
+import MessageModal from "../common/modals/msgModals";
 
 const LayoutContainer = () =>{
     const navigate = useNavigate();
@@ -18,6 +18,7 @@ const LayoutContainer = () =>{
             <div className="body-container">
                 <Outlet />
             </div>
+            <MessageModal />
 
         </div>
     )

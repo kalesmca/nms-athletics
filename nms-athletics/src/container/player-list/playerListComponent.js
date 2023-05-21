@@ -1,111 +1,89 @@
-import React from "react";
+import userEvent from "@testing-library/user-event";
+import React,{useState, useEffect, useRef} from "react";
+import Table from 'react-bootstrap/Table';
+import {useDispatch, useSelector} from 'react-redux';
+import {getPlayerList} from '../../redux/actions/players';
+import Dropdown from 'react-bootstrap/Dropdown';
 
-// const PlayerListComponent = () =>{
-//     return(
-//         <div>PlayerListComponent</div>
-//     )
-// }
 
-// export default PlayerListComponent;
+const PlayerListComponent = () => {
+    const playersState = useSelector((state)=> state.players)
+    const [playerList, setPlayerList] = useState(playersState.playerList)
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        console.log('appSate:',playersState);
+    })
+    useEffect(()=>{
+        dispatch(getPlayerList());
+    }, [])
+    useEffect(()=>{
+        setPlayerList(playersState.playerList)
+    },[playersState])
+    const categoryQuery = (e) =>{
+        console.log(e);
+        setPlayerCategory(e);
 
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Row from 'react-bootstrap/Row';
-
-function PlayerListComponent() {
-  const [validated, setValidated] = useState(false);
-  const [mobile, setMobile] = useState(0);
-
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
     }
+    const [playerCategory, setPlayerCategory] = useState("ALL")
+    return (
+        <div>PlayerListComponent
+            <div>
+            <Dropdown className="d-inline mx-2" value = {playerCategory} >
+        <Dropdown.Toggle id="dropdown-autoclose-true">
+        {playerCategory}
+        </Dropdown.Toggle>
 
-    setValidated(true);
-  };
+        <Dropdown.Menu>
+          <Dropdown.Item value= {"U_12"} onClick={(e)=>{categoryQuery("U_12")}}>"U_12"</Dropdown.Item>
+          <Dropdown.Item value= {"U_14"} onClick={(e)=>{categoryQuery("U_14")}}>"U_14"</Dropdown.Item>
+          <Dropdown.Item value= {"U_17"} onClick={(e)=>{categoryQuery("U_17")}}>"U_17"</Dropdown.Item>
+          <Dropdown.Item value= {"U_19"} onClick={(e)=>{categoryQuery("U_19")}}>"U_19"</Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item value= {"ALL"} onClick={(e)=>{categoryQuery("ALL")}}>"ALL"</Dropdown.Item>
 
-  return (
-    <Form noValidate validated={true} onSubmit={handleSubmit}>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="validationCustom01">
-          <Form.Label>Contact</Form.Label>
-          <Form.Control
-            required
-            type="number"
-            placeholder="Mobile"
-            isInvalid={mobile.toString().length >10 ? true : false}
-            value={mobile}
-            onChange={(e)=>{setMobile(e.target.value)}}
-          />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          <Form.Control.Feedback type="invalid">Looks !</Form.Control.Feedback>
-
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
-          <Form.Label>Last name</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Last name"
-            defaultValue="Otto"
-          />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-          <Form.Label>Username</Form.Label>
-          <InputGroup hasValidation>
-            <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-            <Form.Control
-              type="text"
-              placeholder="Username"
-              aria-describedby="inputGroupPrepend"
-              required
-            />
-            <Form.Control.Feedback type="invalid">
-              Please choose a username.
-            </Form.Control.Feedback>
-          </InputGroup>
-        </Form.Group>
-      </Row>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="6" controlId="validationCustom03">
-          <Form.Label>City</Form.Label>
-          <Form.Control type="text" placeholder="City" required />
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid city.
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group as={Col} md="3" controlId="validationCustom04">
-          <Form.Label>State</Form.Label>
-          <Form.Control type="text" placeholder="State" required />
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid state.
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group as={Col} md="3" controlId="validationCustom05">
-          <Form.Label>Zip</Form.Label>
-          <Form.Control type="text" placeholder="Zip" required />
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid zip.
-          </Form.Control.Feedback>
-        </Form.Group>
-      </Row>
-      <Form.Group className="mb-3">
-        <Form.Check
-          required
-          label="Agree to terms and conditions"
-          feedback="You must agree before submitting."
-          feedbackType="invalid"
-        />
-      </Form.Group>
-      <Button type="submit">Submit form</Button>
-    </Form>
-  );
+        </Dropdown.Menu>
+      </Dropdown>
+            </div>
+            <div>
+                <Table responsive="sm">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Chest No</th>
+                            <th>Events</th>
+                            <th>Pay Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            playerList?.length ? playerList.map((player, pIndex) =>{
+                                if(playerCategory === "ALL" || player.playerCategory === playerCategory) {
+                                    return(
+                                        <tr key={pIndex}>
+                                            <td>{pIndex+1}</td>
+                                            <td>{player.name}</td>
+                                            <td>{player.playerCategory}</td>
+                                            <td>Not-yet</td>
+                                            <td>{player.selectedEvents.map((event, eIndex)=>{
+                                                return(<div key={eIndex}>{event.eventName}</div>)
+                                            })}</td>
+                                            <td>PENDING</td>
+                                        </tr>
+                                    )
+                                }
+                                
+                            }) : <tr>
+                                <td colSpan={6}> No Data Found</td>
+                            </tr>
+                        }
+                        
+                    </tbody>
+                </Table>
+            </div>
+        </div>
+    )
 }
 
 export default PlayerListComponent;
