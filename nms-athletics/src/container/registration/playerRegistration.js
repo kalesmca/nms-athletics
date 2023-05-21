@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import "./registration.scss";
-import { U_12_TIME, U_14_TIME, U_17_TIME, U_19_TIME, initPlayerData, EVENTS, initError } from '../../config/constants';
+import { U_12_TIME, U_14_TIME, U_17_TIME, U_19_TIME, initPlayerData, EVENTS, initError, AUTH_STATUS } from '../../config/constants';
 import { formatAppDate } from '../../config/utils';
 import Alert from 'react-bootstrap/Alert';
 import {addPlayer, getPlayerList} from '../../redux/actions/players';
@@ -12,15 +12,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import {PopupContext } from '../../config/context';
 
 function PlayerRegistration() {
-
+  const playerState = useSelector((state)=>state.players)
   const [playerObj, setPlayerObj] = useState(initPlayerData);
   const [errObj, setErrObj] = useState(initError)
   const dispatch = useDispatch()
   const {setMsgPopupFlag, setNavigationPath,popupObj, setPopupObj} = useContext(PopupContext);
   useEffect(() => {
-    console.log('playerObj', playerObj)
-
-  })
+    const localAuth = JSON.parse(localStorage.getItem("auth"))
+    setPlayerObj({...playerObj, registerMobile:localAuth?.mobile})
+  },[])
 
   const dateChage = (e) => {
     var d1 = new Date(e.target.value);
@@ -71,10 +71,12 @@ function PlayerRegistration() {
     })
     if(invalidForm) { 
       setErrObj({...errObj, ...tempErrObj})
-    } else {
+    } else { 
+      console.log(playerObj)    
       dispatch(addPlayer(playerObj));
       // dispatch(getPlayerList());
-      setNavigationPath("player-list");
+      const path = (playerState.authStatus === AUTH_STATUS.ADMIN_ACCESS || playerState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS) ? "player-list" : "dashboard" 
+      setNavigationPath(path);
       setPopupObj({title:"SUCCESS", content: "Player added successfully"})
       setMsgPopupFlag(true)
     }

@@ -3,6 +3,14 @@ export const DB = {
     players : "players"
 }
 
+export const AUTH_STATUS = {
+    "PENDING": "PENDING",
+    "NOT_REGISTERED":"NOT_REGISTERED",
+    "REGISTERED":"REGISTERED",
+    "ADMIN_ACCESS":"ADMIN_ACCESS",
+    "SUPER_ADMIN_ACCESS":"SUPER_ADMIN_ACCESS"
+} 
+
 
 export const EVENTS = {
     U_12:[{
