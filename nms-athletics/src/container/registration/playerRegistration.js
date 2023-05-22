@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import "./registration.scss";
-import { U_12_TIME, U_14_TIME, U_17_TIME, U_19_TIME, initPlayerData, EVENTS, initError, AUTH_STATUS } from '../../config/constants';
+import { U_6_TIME,U_8_TIME,U_10_TIME,U_12_TIME, U_14_TIME, U_17_TIME,initPlayerData, EVENTS, initError, AUTH_STATUS } from '../../config/constants';
 import { formatAppDate } from '../../config/utils';
 import Alert from 'react-bootstrap/Alert';
 import {addPlayer, getPlayerList} from '../../redux/actions/players';
@@ -28,38 +28,68 @@ function PlayerRegistration() {
     setPlayerObj({...playerObj, registerMobile:localAuth?.mobile})
   },[])
 
-  const dateChage = (e) => {
-    var d1 = new Date(e.target.value);
+  const dateChage = (dateValue, genderValue) => {
+    var d1 = new Date(dateValue);
     const time = d1.getTime();
-    let tempObj = playerObj;
+   
+    if (time > U_6_TIME) {
+        
+      const playerCategory = "U_6" 
+      const defaultEvents = eventDefauleSelection(playerCategory)
+      setPlayerObj({ ...playerObj, dob: dateValue, 
+                    playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
     
-      if (time > U_12_TIME) {
-        EVENTS.U_12.map((tempEvent) => {
-          tempEvent.selection = false;
-          tempEvent.disable = false;
-        })
-        setPlayerObj({ ...playerObj, dob: e.target.value, playerCategory: "U_12", events: EVENTS.U_12, selectedEvents:[] });
+    }else if (time > U_8_TIME && time < U_6_TIME) {
+        
+      const playerCategory = "U_8";
+      const defaultEvents = eventDefauleSelection(playerCategory)
+      setPlayerObj({ ...playerObj, dob: dateValue, 
+                    playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
+    
+    }else if (time > U_10_TIME && time < U_8_TIME) {
+        
+      const playerCategory = "U_10"
+      const defaultEvents = eventDefauleSelection(playerCategory)
+      setPlayerObj({ ...playerObj, dob: dateValue, 
+                    playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
+    
+    }else if (time > U_12_TIME && time < U_10_TIME) {
+
+        const playerCategory = genderValue === "MALE" ? "U_12_B" : "U_12_G"
+        const defaultEvents = eventDefauleSelection(playerCategory)
+        setPlayerObj({ ...playerObj, dob: dateValue, 
+                      playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
+      
       }else if (time > U_14_TIME && time < U_12_TIME) {
-        EVENTS.U_14.map((tempEvent) => {
-          tempEvent.selection = false;
-          tempEvent.disable = false;
-        })
-        setPlayerObj({ ...playerObj, dob: e.target.value, playerCategory: "U_14", events: EVENTS.U_14, selectedEvents:[] });
+        const playerCategory = genderValue === "MALE" ? "U_14_B" : "U_14_G"
+        const defaultEvents = eventDefauleSelection(playerCategory)
+        setPlayerObj({ ...playerObj, dob: dateValue, 
+                      playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
       }else if (time > U_17_TIME && time < U_14_TIME) {
-        EVENTS.U_17.map((tempEvent) => {
-          tempEvent.selection = false;
-          tempEvent.disable = false;
-        })
-        setPlayerObj({ ...playerObj, dob: e.target.value, playerCategory: "U_17", events: EVENTS.U_17, selectedEvents:[] });
-      }else if (time > U_19_TIME && time < U_17_TIME) {
-        EVENTS.U_19.map((tempEvent) => {
-          tempEvent.selection = false;
-          tempEvent.disable = false;
-        })
-        setPlayerObj({ ...playerObj, dob: e.target.value, playerCategory: "U_19", events: EVENTS.U_19, selectedEvents:[] });
+        const playerCategory = genderValue === "MALE" ? "U_17_B" : "U_17_G"
+        const defaultEvents = eventDefauleSelection(playerCategory)
+        setPlayerObj({ ...playerObj, dob: dateValue, 
+                      playerCategory: playerCategory, events: defaultEvents, selectedEvents:[], gender:genderValue });
+      } else if(time< U_17_TIME) {
+        const obj = {
+          title : "Age Restriction",
+          content: "U-17 '01/01/2007' after born players only allowed please change date. ",
+          btn1:"Reset"
+      }
+      setPopupObj(obj);
+      setMsgPopupFlag(true);
+        
       }
    
    
+  }
+
+  const eventDefauleSelection = (category) =>{
+    EVENTS[category].map((tempEvent) => {
+      tempEvent.selection = false;
+      tempEvent.disable = false;
+    })
+    return EVENTS[category]
   }
   
   const submit = () => {
@@ -158,7 +188,7 @@ function PlayerRegistration() {
       </Row>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Club/Scholl Name</Form.Label>
+          <Form.Label>Club/School Name</Form.Label>
           <Form.Control type="text" placeholder="Optional" value={playerObj.clubName}
             onChange={(e) => { setPlayerObj({ ...playerObj, clubName: e.target.value }) }} 
           />
@@ -167,7 +197,7 @@ function PlayerRegistration() {
         <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label>Date of Birth</Form.Label>
           <Form.Control type="date" placeholder="DOB as per Aadhar card" value={playerObj.dob} onBlur={(e)=> {getValidation("dob")}}
-            onChange={(e) => { dateChage(e) }}
+            onChange={(e) => { dateChage(e.target.value, playerObj.gender) }}
             
           />
           {
@@ -186,7 +216,7 @@ function PlayerRegistration() {
             type={"radio"}
             id={`inline-${"Male"}-2`}
             checked={playerObj.gender === "MALE" ? true : false}
-            onClick={() => { setPlayerObj({ ...playerObj, gender: "MALE" }) }}
+            onClick={() => {dateChage(playerObj.dob, "MALE") }}
           />
           <Form.Check
             inline
@@ -194,7 +224,7 @@ function PlayerRegistration() {
             name="group1"
             type={"radio"}
             checked={playerObj.gender === "FEMALE" ? true : false}
-            onClick={() => { setPlayerObj({ ...playerObj, gender: "FEMALE" }) }}
+            onClick={() => {dateChage(playerObj.dob, "FEMALE") }}
             id={`inline-${'FeMale'}-2`}
           />
         </Form.Group>
@@ -202,10 +232,14 @@ function PlayerRegistration() {
       </Row>
 
       <Alert variant={"primary"}>
-          <div>01/01/2011 After Born U_12</div>
-          <div>01/01/2009 After Born U_14</div>
-          <div>01/01/2006 After Born U_17</div>
-          <div>01/01/2004 After Born U_19</div>
+     
+          <div>01/01/2018 After Born U_6</div>
+          <div>01/01/2016 After Born U_8</div>
+          <div>01/01/2014 After Born U_10</div>
+
+          <div>01/01/2012 After Born U_12</div>
+          <div>01/01/2010 After Born U_14</div>
+          <div>01/01/2007 After Born U_17</div>
         </Alert>
 
 
