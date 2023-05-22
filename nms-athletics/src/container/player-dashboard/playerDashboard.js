@@ -17,7 +17,13 @@ const PlayerDashboard = () =>{
         console.log('appSate:',playersState);
     })
     useEffect(()=>{
-        dispatch(getPlayerList());
+        const localAuth = JSON.parse(localStorage.getItem("auth"))
+        if(!localAuth || !localAuth.mobile){
+        navigate("")
+        } else {
+            dispatch(getPlayerList());
+        }
+        
     }, [])
     useEffect(()=>{
         setPlayerList(playersState.regPlayerList)

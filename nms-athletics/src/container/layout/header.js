@@ -1,23 +1,33 @@
-import React, { useEffect } from "react";
-import {AUTH_STATUS} from '../../config/constants';
+import React, { useEffect, useState } from "react";
+import { AUTH_STATUS } from '../../config/constants';
 import "./header.scss";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
-import {setAuthStatus} from '../../redux/actions/players'
+import { setAuthStatus } from '../../redux/actions/players'
 
 const HeaderComponent = () => {
     const playerState = useSelector((state) => state?.players)
     const dispatch = useDispatch()
     const navigate = useNavigate();
+
+    const [logOutFlag, setLogOutFlag] = useState(false);
+
+
     const navigation = (path) => {
         navigate(path);
     }
     useEffect(() => {
+        const localAuth = JSON.parse(localStorage.getItem("auth"))
+        if (localAuth && localAuth.mobile) {
+            setLogOutFlag(true)
+        } else {
+            setLogOutFlag(false)
+        }
 
     }, [])
-    const logout = () =>{
+    const logout = () => {
         localStorage.removeItem("auth");
         dispatch(setAuthStatus(AUTH_STATUS.PENDING))
         navigate("")
@@ -48,16 +58,20 @@ const HeaderComponent = () => {
 
                         </nav>
 
-                        <div>
-                        <Button variant="primary" onClick={() => { logout() }}>
-        Logout
-      </Button>
-                            
-                            </div>
+
 
                     </div>
                 ) : ""
             }
+            {
+                logOutFlag || playerState.authStatus != AUTH_STATUS.PENDING ? (<div>
+                    <Button variant="primary" onClick={() => { logout() }}>
+                        Logout
+                    </Button>
+
+                </div>) : ""
+            }
+
 
         </div>
     )

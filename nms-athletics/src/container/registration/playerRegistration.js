@@ -10,15 +10,21 @@ import Alert from 'react-bootstrap/Alert';
 import {addPlayer, getPlayerList} from '../../redux/actions/players';
 import { useDispatch, useSelector } from 'react-redux';
 import {PopupContext } from '../../config/context';
+import { useNavigate } from 'react-router-dom';
 
 function PlayerRegistration() {
   const playerState = useSelector((state)=>state.players)
   const [playerObj, setPlayerObj] = useState(initPlayerData);
   const [errObj, setErrObj] = useState(initError)
   const dispatch = useDispatch()
+  const navigate = useNavigate();
+
   const {setMsgPopupFlag, setNavigationPath,popupObj, setPopupObj} = useContext(PopupContext);
   useEffect(() => {
     const localAuth = JSON.parse(localStorage.getItem("auth"))
+    if(!localAuth || !localAuth.mobile){
+      navigate("")
+    } 
     setPlayerObj({...playerObj, registerMobile:localAuth?.mobile})
   },[])
 
