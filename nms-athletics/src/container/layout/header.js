@@ -38,6 +38,8 @@ const HeaderComponent = () => {
 
             {
                 playerState?.authStatus === "ADMIN_ACCESS" || playerState?.authStatus === "SUPER_ADMIN_ACCESS" ? (
+                    // true? (
+
                     <div className="nav-links">
 
                         <nav>

@@ -260,6 +260,12 @@ function PlayerRegistration() {
           }
         </Col>
       </Row>
+      <Alert variant={"warning"}>
+     
+          <div>Entrance fee RS-200/player</div>
+          <div>GPay : 9965388040 (Shiva)</div>
+         
+        </Alert>
 
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">

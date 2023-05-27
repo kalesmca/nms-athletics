@@ -6,8 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { AUTH_STATUS } from '../../../config/constants';
 import { setAuthStatus } from '../../../redux/actions/players';
+import ViewPlayerComponent from '../view-player/viewPlayer';
 
 const MessageModal = (props) => {
+
+  const components = {
+    ViewPlayerComponent: ViewPlayerComponent
+  }
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -52,6 +57,7 @@ const MessageModal = (props) => {
       setMsgPopupFlag(false)
     }
   }
+  const Component = popupObj.componentName ? components[popupObj.componentName] : "" 
 
   return (
     <>
@@ -69,7 +75,10 @@ const MessageModal = (props) => {
           <Modal.Title>{popupObj?.title ? popupObj.title : ""}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {popupObj?.content ? popupObj.content : "Default MESSAGE"}
+          {
+            popupObj?.componentName ? <Component player={popupObj.props}/> : popupObj?.content ? popupObj.content : "Default MESSAGE"
+          }
+          {/* {popupObj?.content ? popupObj.content : "Default MESSAGE"} */}
 
         </Modal.Body>
         <Modal.Footer>
