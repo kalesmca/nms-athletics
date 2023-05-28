@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPlayerList } from '../../redux/actions/players';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { PopupContext } from "../../config/context";
-import { EVENTS,PAYMENT_STATUS } from '../../config/constants';
+import { EVENTS, PAYMENT_STATUS } from '../../config/constants';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -50,20 +50,20 @@ const PlayerListComponent = () => {
         setMsgPopupFlag(true)
     }
 
-    const getQueryValidation = (player) =>{
+    const getQueryValidation = (player) => {
         let searchKeyFlag = true;
-        searchKeyFlag =  !searchKey ? true : player.name.toLowerCase().includes(searchKey) ? true : false;
-        if((playerCategory === "ALL" || player.playerCategory === playerCategory) && 
-                (selectedEvent.eventId === "ALL" || selectedEvent.eventId == player.selectedEvents[0].eventId || selectedEvent.eventId === player.selectedEvents[1]?.eventId) &&
-                (searchKeyFlag) && 
-                (paymentStatus === "ALL" || player.paymentStatus === paymentStatus)
-                ){
+        searchKeyFlag = !searchKey ? true : player.name.toLowerCase().includes(searchKey) ? true : false;
+        if ((playerCategory === "ALL" || player.playerCategory === playerCategory) &&
+            (selectedEvent.eventId === "ALL" || selectedEvent.eventId == player.selectedEvents[0].eventId || selectedEvent.eventId === player.selectedEvents[1]?.eventId) &&
+            (searchKeyFlag) &&
+            (paymentStatus === "ALL" || player.paymentStatus === paymentStatus)
+        ) {
             return true;
         } else {
             return false
         }
 
-        
+
     }
     return (
         <div>
@@ -74,14 +74,14 @@ const PlayerListComponent = () => {
                         <Form >
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="formGridEmail">
-                                   
+
                                     <Form.Control type="text" placeholder="Search By Player Name" value={searchKey}
-                                        onChange={(e) => { setSearchKey(e.target.value) }} 
+                                        onChange={(e) => { setSearchKey(e.target.value) }}
                                     />
-                                    
+
                                 </Form.Group>
 
-                                
+
                             </Row>
                         </Form>
                         <div>
@@ -103,24 +103,27 @@ const PlayerListComponent = () => {
 
                                 </Dropdown.Menu>
                             </Dropdown>
-                            <Dropdown className="d-inline mx-2" value={selectedEvent.eventName} >
-                                <Dropdown.Toggle id="dropdown-autoclose-true">
-                                    {selectedEvent.eventName}
-                                </Dropdown.Toggle>
+                            {
+                                events?.length ? (<Dropdown className="d-inline mx-2" value={selectedEvent.eventName} >
+                                    <Dropdown.Toggle id="dropdown-autoclose-true">
+                                        {selectedEvent.eventName}
+                                    </Dropdown.Toggle>
 
-                                <Dropdown.Menu>
-                                    {
-                                        events.length ? events.map((event, kIndex) => {
-                                            return (<Dropdown.Item index={kIndex} value={event.eventName} onClick={(e) => { selectEvent(event) }}>{event.eventName}</Dropdown.Item>)
+                                    <Dropdown.Menu>
+                                        {
+                                            events.map((event, kIndex) => {
+                                                return (<Dropdown.Item index={kIndex} value={event.eventName} onClick={(e) => { selectEvent(event) }}>{event.eventName}</Dropdown.Item>)
 
-                                        }) : ""
-                                    }
+                                            })
+                                        }
 
-                                    <Dropdown.Divider />
-                                    <Dropdown.Item value={"ALL"} onClick={(e) => { selectEvent({ eventName: "ALL", eventId: "ALL" }) }}>ALL</Dropdown.Item>
+                                        <Dropdown.Divider />
+                                        <Dropdown.Item value={"ALL"} onClick={(e) => { selectEvent({ eventName: "ALL", eventId: "ALL" }) }}>ALL</Dropdown.Item>
 
-                                </Dropdown.Menu>
-                            </Dropdown>
+                                    </Dropdown.Menu>
+                                </Dropdown>) : ""
+                            }
+
                             <Dropdown className="d-inline mx-2" value={paymentStatus} >
                                 <Dropdown.Toggle id="dropdown-autoclose-true">
                                     {paymentStatus}
