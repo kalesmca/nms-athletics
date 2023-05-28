@@ -5,16 +5,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPlayerList } from '../../redux/actions/players';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { PopupContext } from "../../config/context";
-import { EVENTS } from '../../config/constants';
-
-
+import { EVENTS,PAYMENT_STATUS } from '../../config/constants';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+const initEvent = { eventName: "ALL", eventId: "ALL" };
 const PlayerListComponent = () => {
     const playersState = useSelector((state) => state.players)
     const [playerList, setPlayerList] = useState(playersState.playerList);
     const [playerCategory, setPlayerCategory] = useState("ALL")
     const [events, setEvents] = useState([])
+    const [searchKey, setSearchKey] = useState("")
+    const [paymentStatus, setPaymentStatus] = useState("ALL")
 
-    const [selectedEvent, setSelectedEvent] = useState({eventName:"ALL", eventId: "ALL" })
+    const [selectedEvent, setSelectedEvent] = useState(initEvent)
     const { msgPopupFlag, setMsgPopupFlag, navigationPath, setNavigationPath, popupObj, setPopupObj } = useContext(PopupContext)
     const dispatch = useDispatch();
     useEffect(() => {
@@ -32,6 +36,7 @@ const PlayerListComponent = () => {
     const categoryQuery = (e) => {
         console.log(e);
         setPlayerCategory(e);
+        setSelectedEvent(initEvent)
         setEvents(EVENTS[e])
 
     }
@@ -44,12 +49,41 @@ const PlayerListComponent = () => {
         setPopupObj({ componentName: "ViewPlayerComponent", props: player, title: player.name })
         setMsgPopupFlag(true)
     }
+
+    const getQueryValidation = (player) =>{
+        let searchKeyFlag = true;
+        searchKeyFlag =  !searchKey ? true : player.name.toLowerCase().includes(searchKey) ? true : false;
+        if((playerCategory === "ALL" || player.playerCategory === playerCategory) && 
+                (selectedEvent.eventId === "ALL" || selectedEvent.eventId == player.selectedEvents[0].eventId || selectedEvent.eventId === player.selectedEvents[1]?.eventId) &&
+                (searchKeyFlag) && 
+                (paymentStatus === "ALL" || player.paymentStatus === paymentStatus)
+                ){
+            return true;
+        } else {
+            return false
+        }
+
+        
+    }
     return (
         <div>
             {
-                   playersState?.authStatus === "ADMIN_ACCESS" || playersState?.authStatus === "SUPER_ADMIN_ACCESS" ? (
-                // true ? (
-                    <div>PlayerListComponent
+                playersState?.authStatus === "ADMIN_ACCESS" || playersState?.authStatus === "SUPER_ADMIN_ACCESS" ? (
+                    // true ? (
+                    <div>
+                        <Form >
+                            <Row className="mb-3">
+                                <Form.Group as={Col} controlId="formGridEmail">
+                                   
+                                    <Form.Control type="text" placeholder="Search By Player Name" value={searchKey}
+                                        onChange={(e) => { setSearchKey(e.target.value) }} 
+                                    />
+                                    
+                                </Form.Group>
+
+                                
+                            </Row>
+                        </Form>
                         <div>
                             <Dropdown className="d-inline mx-2" value={playerCategory} >
                                 <Dropdown.Toggle id="dropdown-autoclose-true">
@@ -65,7 +99,7 @@ const PlayerListComponent = () => {
                                     }
 
                                     <Dropdown.Divider />
-                                    <Dropdown.Item value={"ALL"} onClick={(e) => { categoryQuery("ALL") }}>"ALL"</Dropdown.Item>
+                                    <Dropdown.Item value={"ALL"} onClick={(e) => { categoryQuery("ALL") }}>ALL</Dropdown.Item>
 
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -83,7 +117,25 @@ const PlayerListComponent = () => {
                                     }
 
                                     <Dropdown.Divider />
-                                    <Dropdown.Item value={"ALL"} onClick={(e) => { selectEvent({eventName:"ALL", eventId: "ALL" }) }}>"ALL"</Dropdown.Item>
+                                    <Dropdown.Item value={"ALL"} onClick={(e) => { selectEvent({ eventName: "ALL", eventId: "ALL" }) }}>ALL</Dropdown.Item>
+
+                                </Dropdown.Menu>
+                            </Dropdown>
+                            <Dropdown className="d-inline mx-2" value={paymentStatus} >
+                                <Dropdown.Toggle id="dropdown-autoclose-true">
+                                    {paymentStatus}
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    {
+                                        PAYMENT_STATUS.map((status, kIndex) => {
+                                            return (<Dropdown.Item index={kIndex} value={status} onClick={(e) => { setPaymentStatus(status) }}>{status}</Dropdown.Item>)
+
+                                        })
+                                    }
+
+                                    <Dropdown.Divider />
+                                    <Dropdown.Item value={"ALL"} onClick={(e) => { setPaymentStatus("ALL") }}>ALL</Dropdown.Item>
 
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -103,7 +155,7 @@ const PlayerListComponent = () => {
                                 <tbody>
                                     {
                                         playerList?.length ? playerList.map((player, pIndex) => {
-                                            if ((playerCategory === "ALL" || player.playerCategory === playerCategory) && (selectedEvent.eventId === "ALL" || selectedEvent.eventId == player.selectedEvents[0].eventId || selectedEvent.eventId === player.selectedEvents[1]?.eventId)) {
+                                            if (getQueryValidation(player)) {
                                                 return (
                                                     <tr key={pIndex} onClick={() => { viewPlayer(player) }}>
                                                         <td>{pIndex + 1}</td>
