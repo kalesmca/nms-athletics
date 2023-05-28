@@ -1,7 +1,6 @@
 // import axios from "axios";
 import { db } from "../../firebase-config";
-import {DB} from '../../constants/config';
-
+import {DB} from '../../config/constants';
 import {
     collection,
     getDocs,
@@ -23,7 +22,7 @@ export const  getUserList = async() =>{
 }
 
 export const  updateUser = async(newObj) =>{
-    const userDoc = doc(db, DB.USERS, newObj.id);
+    const userDoc = doc(db, DB.players, newObj.id);
     await updateDoc(userDoc, newObj); 
   
      

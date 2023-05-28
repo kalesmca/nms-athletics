@@ -1,5 +1,5 @@
 
-import {UPDATE_PLAYERS} from '../../config/actions';
+import {UPDATE_PLAYERS,UPDATE_AUTH_STATUS} from '../../config/actions';
 import { db } from "../../firebase-config";
 import {DB} from '../../config/constants';
 
@@ -20,7 +20,10 @@ export const getPlayerList = () => async (dispatch, getState) => {
         let dataList = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         console.log('data list:', dataList)
 
-        dispatch(updatePlayerList(dataList))
+        const localAuth = JSON.parse(localStorage.getItem("auth"));
+        const regPlayerList = dataList.filter((data)=> data.registerMobile === localAuth.mobile)
+        
+        dispatch(updatePlayerList(dataList, regPlayerList))
     }
     catch (error) {
         console.log('getEventList : error:', error);
@@ -38,10 +41,18 @@ export const addPlayer = (obj) => async (dispatch, getState) => {
 }
 
 
-export const updatePlayerList = (data) => {
+export const updatePlayerList = (data, regPlayerList) => {
     return {
         type: UPDATE_PLAYERS,
-        data: data
+        data: data,
+        regPlayerList:regPlayerList
+    }
+}
+
+export const setAuthStatus = (status) =>{
+    return{
+        type:UPDATE_AUTH_STATUS,
+        data: status
     }
 }
 
