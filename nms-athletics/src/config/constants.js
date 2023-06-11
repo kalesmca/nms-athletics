@@ -170,7 +170,7 @@ export const EVENTS = {
             disable:false
         },
         {
-            eventName: "800M",
+            eventName: "600M",
             eventId:"U_14_B_EVENTS_3",
             selection: false,
             disable:false
@@ -208,7 +208,7 @@ export const EVENTS = {
             disable:false
         },
         {
-            eventName: "800M",
+            eventName: "600M",
             eventId:"U_14_B_EVENTS_3",
             selection: false,
             disable:false
