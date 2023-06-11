@@ -52,7 +52,7 @@ const PlayerListComponent = () => {
 
     const getQueryValidation = (player) => {
         let searchKeyFlag = true;
-        searchKeyFlag = !searchKey ? true : player.name.toLowerCase().includes(searchKey) ? true : false;
+        searchKeyFlag = !searchKey ? true : player.name.toLowerCase().includes(searchKey.toLowerCase()) ? true : false;
         if ((playerCategory === "ALL" || player.playerCategory === playerCategory) &&
             (selectedEvent.eventId === "ALL" || selectedEvent.eventId == player.selectedEvents[0].eventId || selectedEvent.eventId === player.selectedEvents[1]?.eventId) &&
             (searchKeyFlag) &&
