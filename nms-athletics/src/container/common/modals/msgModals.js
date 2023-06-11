@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { PopupContext } from '../../../config/context';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { AUTH_STATUS } from '../../../config/constants';
+import { AUTH_STATUS, adminList } from '../../../config/constants';
 import { setAuthStatus } from '../../../redux/actions/players';
 import ViewPlayerComponent from '../view-player/viewPlayer';
 
@@ -31,8 +31,11 @@ const MessageModal = (props) => {
   const loginAuthentication = () => {
     let navPath = "registration"
     let localAuth = JSON.parse(localStorage.getItem("auth"));
-    if (localAuth.mobile == "8682890117") {
-      localAuth.access = AUTH_STATUS.SUPER_ADMIN_ACCESS;
+    let filteredList = adminList.filter((admin)=> admin.mobile == localAuth.mobile) 
+    // if (localAuth.mobile == "8682890117") {
+      if(filteredList?.length){
+        
+      localAuth.access = filteredList[0].auth;
       navPath = "player-list"
     } else if (playerState.regPlayerList?.length) {
       localAuth.access = AUTH_STATUS.REGISTERED;

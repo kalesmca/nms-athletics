@@ -1,6 +1,7 @@
 import {formatAppDate} from './utils';
+export const adminList = [{mobile:8682890117, auth:"SUPER_ADMIN_ACCESS"},{mobile:9994374553, auth:"ADMIN_ACCESS"},{mobile:9944419808, auth:"ADMIN_ACCESS"}]
 export const DB = {
-    players : "players"
+    players : "preDemo"
 }
 
 export const AUTH_STATUS = {

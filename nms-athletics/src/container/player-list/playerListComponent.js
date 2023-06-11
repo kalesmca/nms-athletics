@@ -164,10 +164,13 @@ const PlayerListComponent = () => {
                                                         <td>{pIndex + 1}</td>
                                                         <td>{player.name}</td>
                                                         <td>{player.playerCategory}</td>
-                                                        <td>Not-yet</td>
-                                                        <td>{player.selectedEvents.map((event, eIndex) => {
-                                                            return (<div key={eIndex}>{event.eventName}</div>)
-                                                        })}</td>
+                                                        <td>Not-yet</td>{
+                                                            player?.selectedEvents?.length ? 
+                                                            (<td>{player?.selectedEvents.map((event, eIndex) => {
+                                                                return (<div key={eIndex}>{event.eventName}</div>)
+                                                            })}</td>) : ""
+                                                        }
+                                                        
                                                         <td>{player.paymentStatus}</td>
                                                     </tr>
                                                 )
