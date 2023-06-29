@@ -263,7 +263,7 @@ function PlayerRegistration() {
       <Alert variant={"warning"}>
      
           <div>Entrance fee RS-200/player</div>
-          <div>GPay : 9965388040 (Shiva)</div>
+          <div>GPay : 9944419808 (NMS Sports club)</div>
          
         </Alert>
 
