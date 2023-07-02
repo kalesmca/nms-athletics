@@ -127,6 +127,12 @@ export const EVENTS = {
         disable:false
     },
     {
+        eventName: "200M",
+        eventId:"U_12_B_EVENTS_4",
+        selection: false,
+        disable:false
+    },
+    {
         eventName: "400M",
         eventId:"U_12_B_EVENTS_2",
         selection: false,
@@ -141,6 +147,12 @@ export const EVENTS = {
     U_12_G:[{
         eventName: "80M",
         eventId:"U_12_G_EVENTS_1",
+        selection: false,
+        disable:false
+    },
+    {
+        eventName: "200M",
+        eventId:"U_12_G_EVENTS_4",
         selection: false,
         disable:false
     },
@@ -170,7 +182,7 @@ export const EVENTS = {
             disable:false
         },
         {
-            eventName: "600M",
+            eventName: "800M",
             eventId:"U_14_B_EVENTS_3",
             selection: false,
             disable:false
@@ -208,7 +220,7 @@ export const EVENTS = {
             disable:false
         },
         {
-            eventName: "600M",
+            eventName: "800M",
             eventId:"U_14_B_EVENTS_3",
             selection: false,
             disable:false
