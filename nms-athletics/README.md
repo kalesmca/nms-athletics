@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## packages to install
 
- npm i react-redux react-router-dom redux sass
+ npm i react-redux react-router-dom redux sass react-bootstrap bootstrap redux-thunk
 
  npm install react-bootstrap bootstrap
 

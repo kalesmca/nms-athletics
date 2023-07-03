@@ -52,7 +52,7 @@ const PlayerListComponent = () => {
 
     const getQueryValidation = (player) => {
         let searchKeyFlag = true;
-        searchKeyFlag = !searchKey ? true : player.name.toLowerCase().includes(searchKey) ? true : false;
+        searchKeyFlag = !searchKey ? true : (player.name.toLowerCase().includes(searchKey.toLowerCase()) || player.upi.toLowerCase().includes(searchKey.toLowerCase())) ? true : false;
         if ((playerCategory === "ALL" || player.playerCategory === playerCategory) &&
             (selectedEvent.eventId === "ALL" || selectedEvent.eventId == player.selectedEvents[0].eventId || selectedEvent.eventId === player.selectedEvents[1]?.eventId) &&
             (searchKeyFlag) &&
@@ -164,10 +164,13 @@ const PlayerListComponent = () => {
                                                         <td>{pIndex + 1}</td>
                                                         <td>{player.name}</td>
                                                         <td>{player.playerCategory}</td>
-                                                        <td>Not-yet</td>
-                                                        <td>{player.selectedEvents.map((event, eIndex) => {
-                                                            return (<div key={eIndex}>{event.eventName}</div>)
-                                                        })}</td>
+                                                        <td>Not-yet</td>{
+                                                            player?.selectedEvents?.length ? 
+                                                            (<td>{player?.selectedEvents.map((event, eIndex) => {
+                                                                return (<div key={eIndex}>{event.eventName}</div>)
+                                                            })}</td>) : ""
+                                                        }
+                                                        
                                                         <td>{player.paymentStatus}</td>
                                                     </tr>
                                                 )

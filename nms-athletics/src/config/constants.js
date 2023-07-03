@@ -1,6 +1,7 @@
 import {formatAppDate} from './utils';
+export const adminList = [{mobile:8682890117, auth:"SUPER_ADMIN_ACCESS"},{mobile:9994374553, auth:"ADMIN_ACCESS"},{mobile:9944419808, auth:"ADMIN_ACCESS"}]
 export const DB = {
-    players : "players"
+    players : "preDemo"
 }
 
 export const AUTH_STATUS = {
@@ -13,86 +14,145 @@ export const AUTH_STATUS = {
 
 
 export const EVENTS = {
-    U_6:[{
-        eventName: "30M",
+    U_6_B:[{
+        eventName: "50M",
         eventId:"U_6_B_EVENTS_1",
         selection: false,
         disable:false
     },
     {
         eventName: "BALL_THROW",
-        eventId:"U_6_B_EVENTS_3",
+        eventId:"U_6_B_EVENTS_2",
         selection: false,
         disable:false
     },
     {
-        eventName: "SHUTTLE_RUN",
-        eventId:"U_6_B_EVENTS_4",
+        eventName: "30M_Hurdles",
+        eventId:"U_6_B_EVENTS_3",
         selection: false,
         disable:false
     }],
-    U_8:[{
+    U_6_G:[{
         eventName: "50M",
-        eventId:"U_8_EVENTS_1",
+        eventId:"U_6_G_EVENTS_1",
+        selection: false,
+        disable:false
+    },
+    {
+        eventName: "BALL_THROW",
+        eventId:"U_6_G_EVENTS_2",
+        selection: false,
+        disable:false
+    },
+    {
+        eventName: "30M_Hurdles",
+        eventId:"U_6_G_EVENTS_3",
+        selection: false,
+        disable:false
+    }],
+    U_8_B:[{
+        eventName: "50M",
+        eventId:"U_8_B_EVENTS_1",
         selection: false,
         disable:false
     },
     {
         eventName: "80M",
-        eventId:"U_8_EVENTS_2",
+        eventId:"U_8_B_EVENTS_2",
         selection: false,
         disable:false
     },{
         eventName: "BALL_THROW",
-        eventId:"U_8_EVENTS_3",
+        eventId:"U_8_B_EVENTS_3",
         selection: false,
         disable:false
     }],
-    U_10:[{
+    U_8_G:[{
         eventName: "50M",
-        eventId:"U_10_EVENTS_1",
+        eventId:"U_8_G_EVENTS_1",
         selection: false,
         disable:false
     },
     {
         eventName: "80M",
-        eventId:"U_10_EVENTS_3",
+        eventId:"U_8_G_EVENTS_2",
+        selection: false,
+        disable:false
+    },{
+        eventName: "BALL_THROW",
+        eventId:"U_8_G_EVENTS_3",
+        selection: false,
+        disable:false
+    }],
+    U_10_B:[{
+        eventName: "50M",
+        eventId:"U_10_B_EVENTS_1",
+        selection: false,
+        disable:false
+    },
+    {
+        eventName: "80M",
+        eventId:"U_10_B_EVENTS_2",
         selection: false,
         disable:false
     },
     {
         eventName: "SHUTTLE_RUN",
-        eventId:"U_10_EVENTS_4",
+        eventId:"U_10_B_EVENTS_3",
+        selection: false,
+        disable:false
+    }],
+    U_10_G:[{
+        eventName: "50M",
+        eventId:"U_10_G_EVENTS_1",
+        selection: false,
+        disable:false
+    },
+    {
+        eventName: "80M",
+        eventId:"U_10_G_EVENTS_2",
+        selection: false,
+        disable:false
+    },
+    {
+        eventName: "SHUTTLE_RUN",
+        eventId:"U_10_G_EVENTS_3",
         selection: false,
         disable:false
     }],
     U_12_B:[{
-        eventName: "SHOTPUT",
+        eventName: "80M",
         eventId:"U_12_B_EVENTS_1",
         selection: false,
         disable:false
     },
     {
-        eventName: "400M",
-        eventId:"U_12_B_EVENTS_3",
-        selection: false,
-        disable:false
-    },
-    {
-        eventName: "LONG_JUMP",
+        eventName: "200M",
         eventId:"U_12_B_EVENTS_4",
         selection: false,
         disable:false
     },
     {
-        eventName: "DISCUSS_THROW",
-        eventId:"U_12_B_EVENTS_5",
+        eventName: "400M",
+        eventId:"U_12_B_EVENTS_2",
+        selection: false,
+        disable:false
+    },
+    {
+        eventName: "LONG_JUMP",
+        eventId:"U_12_B_EVENTS_3",
         selection: false,
         disable:false
     }],
     U_12_G:[{
-        eventName: "200M",
+        eventName: "80M",
         eventId:"U_12_G_EVENTS_1",
+        selection: false,
+        disable:false
+    },
+    {
+        eventName: "200M",
+        eventId:"U_12_G_EVENTS_4",
         selection: false,
         disable:false
     },
@@ -110,19 +170,19 @@ export const EVENTS = {
     }],
     U_14_B:[
         {
-            eventName: "400M",
+            eventName: "100M",
             eventId:"U_14_B_EVENTS_1",
             selection: false,
             disable:false
         },
         {
-            eventName: "200M",
+            eventName: "400M",
             eventId:"U_14_B_EVENTS_2",
             selection: false,
             disable:false
         },
         {
-            eventName: "600M",
+            eventName: "800M",
             eventId:"U_14_B_EVENTS_3",
             selection: false,
             disable:false
@@ -154,26 +214,26 @@ export const EVENTS = {
             disable:false
         },
         {
-            eventName: "200M",
+            eventName: "100M",
             eventId:"U_14_G_EVENTS_2",
             selection: false,
             disable:false
         },
         {
-            eventName: "600M",
+            eventName: "800M",
             eventId:"U_14_B_EVENTS_3",
             selection: false,
             disable:false
         },
         {
-            eventName: "800M",
-            eventId:"U_14_G_EVENTS_5",
+            eventName: "DISCUSS_THROW",
+            eventId:"U_14_G_EVENTS_4",
             selection: false,
             disable:false
         },
         {
             eventName: "LONG_JUMP",
-            eventId:"U_14_G_EVENTS_4",
+            eventId:"U_14_G_EVENTS_5",
             selection: false,
             disable:false
         },
@@ -206,12 +266,6 @@ export const EVENTS = {
         },
         {
             eventName: "1500M",
-            eventId:"U_17_B_EVENTS_3",
-            selection: false,
-            disable:false
-        },
-        {
-            eventName: "LONG_JUMP",
             eventId:"U_17_B_EVENTS_4",
             selection: false,
             disable:false
@@ -229,7 +283,7 @@ export const EVENTS = {
             disable:false
         },{
             eventName: "JAWLIN_THROW",
-            eventId:"U_17_B_EVENTS_6",
+            eventId:"U_17_B_EVENTS_7",
             selection: false,
             disable:false
         }
@@ -255,13 +309,13 @@ export const EVENTS = {
         },
         {
             eventName: "1500M",
-            eventId:"U_17_G_EVENTS_3",
+            eventId:"U_17_G_EVENTS_4",
             selection: false,
             disable:false
         },
         {
             eventName: "LONG_JUMP",
-            eventId:"U_17_G_EVENTS_4",
+            eventId:"U_17_G_EVENTS_5",
             selection: false,
             disable:false
         },
@@ -270,40 +324,12 @@ export const EVENTS = {
             eventId:"U_17_G_EVENTS_6",
             selection: false,
             disable:false
-        }],
-    U_19:[
-        {
-            eventName: "100M",
-            eventId:"U_19_EVENTS_1",
+        },{
+            eventName: "DISCUSS_THROW",
+            eventId:"U_17_G_EVENTS_7",
             selection: false,
             disable:false
-        },
-        {
-            eventName: "200M",
-            eventId:"U_19_EVENTS_2",
-            selection: false,
-            disable:false
-        },
-        {
-            eventName: "1500M",
-            eventId:"U_19_EVENTS_3",
-            selection: false,
-            disable:false
-        },
-        {
-            eventName: "LONG_JUMP",
-            eventId:"U_19_EVENTS_4",
-            selection: false,
-            disable:false
-        },
-        {
-            eventName: "SHORT_PUT",
-            eventId:"U_19_EVENTS_6",
-            selection: false,
-            disable:false
-        }
-    ]
-
+        }]
 }
 
 export const U_14_EVENTS = ["100M, 200M, 600M", "SHORT_PUT", "LONG_JUMP", "DISCUSS_THROW"]

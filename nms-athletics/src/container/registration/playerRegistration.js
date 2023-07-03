@@ -34,21 +34,21 @@ function PlayerRegistration() {
    
     if (time > U_6_TIME) {
         
-      const playerCategory = "U_6" 
+      const playerCategory = genderValue === "MALE" ? "U_6_B" : "U_6_G"
       const defaultEvents = eventDefauleSelection(playerCategory)
       setPlayerObj({ ...playerObj, dob: dateValue, 
                     playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
     
     }else if (time > U_8_TIME && time < U_6_TIME) {
         
-      const playerCategory = "U_8";
+      const playerCategory = genderValue === "MALE" ? "U_8_B" : "U_8_G"
       const defaultEvents = eventDefauleSelection(playerCategory)
       setPlayerObj({ ...playerObj, dob: dateValue, 
                     playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
     
     }else if (time > U_10_TIME && time < U_8_TIME) {
         
-      const playerCategory = "U_10"
+      const playerCategory = genderValue === "MALE" ? "U_10_B" : "U_10_G"
       const defaultEvents = eventDefauleSelection(playerCategory)
       setPlayerObj({ ...playerObj, dob: dateValue, 
                     playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
@@ -263,7 +263,7 @@ function PlayerRegistration() {
       <Alert variant={"warning"}>
      
           <div>Entrance fee RS-200/player</div>
-          <div>GPay : 9965388040 (Shiva)</div>
+          <div>GPay : 9944419808 (NMS Sports club)</div>
          
         </Alert>
 
