@@ -1,9 +1,10 @@
 import React from "react";
+import './login.scss';
 
 const LoginHeader = () =>{
     return(
         <div>
-            Login Header component
+            <div className="header">NMS Sports Club</div>
         </div>
     )
 }

@@ -22,7 +22,7 @@ const LoginComponent = () => {
   const submit = () => {
     const obj = {
       title: !mobile || mobile?.toString()?.length != 10 ? "Please Enter valid 10 digit Mobile Number" : "Please re-confirm your Mobile Number",
-      content: mobile,
+      content: !mobile || mobile?.toString()?.length != 10 ? "Invalid Mobile number": mobile,
       contentSpinner: true,
       btn2: !mobile || mobile?.toString()?.length != 10 ? "" : "Confirm",
       btn1: "Reset"

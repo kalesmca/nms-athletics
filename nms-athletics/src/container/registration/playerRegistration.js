@@ -111,7 +111,7 @@ function PlayerRegistration() {
       console.log(playerObj)    
       dispatch(addPlayer(playerObj));
       // dispatch(getPlayerList());
-      const path = (playerState.authStatus === AUTH_STATUS.ADMIN_ACCESS || playerState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS) ? "player-list" : "dashboard" 
+      const path = (playerState.authStatus === AUTH_STATUS.ADMIN_ACCESS || playerState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS) ? "/authed/player-list" : "/authed/dashboard" 
       setNavigationPath(path);
       setPopupObj({title:"SUCCESS", content: "Player added successfully"})
       setMsgPopupFlag(true)

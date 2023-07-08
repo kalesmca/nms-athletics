@@ -29,17 +29,17 @@ const MessageModal = (props) => {
   }, [])
 
   const loginAuthentication = () => {
-    let navPath = "registration"
+    let navPath = "/authed/registration"
     let localAuth = JSON.parse(localStorage.getItem("auth"));
     let filteredList = adminList.filter((admin)=> admin.mobile == localAuth.mobile) 
     // if (localAuth.mobile == "8682890117") {
       if(filteredList?.length){
         
       localAuth.access = filteredList[0].auth;
-      navPath = "player-list"
+      navPath = "/authed/player-list"
     } else if (playerState.regPlayerList?.length) {
       localAuth.access = AUTH_STATUS.REGISTERED;
-      navPath = "dashboard"
+      navPath = "/authed/dashboard"
     } else {
       localAuth.access = AUTH_STATUS.NOT_REGISTERED;
     }

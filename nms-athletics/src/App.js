@@ -9,6 +9,7 @@ import LayoutContainer from './container/layout/layoutContainer';
 import LoginComponent from './container/login/loginComponent';
 import NotFoundComponent from './container/notFound/notFoundComponent';
 import { PopupContext} from './config/context';
+import LoginLayout from './container/login/loginLayout';
 
 function App() {
   const [msgPopupFlag, setMsgPopupFlag] = useState(false);
@@ -18,7 +19,7 @@ function App() {
     <BrowserRouter >
           <PopupContext.Provider value={{ msgPopupFlag, setMsgPopupFlag, navigationPath, setNavigationPath, popupObj, setPopupObj}}>
 
-        <Routes>
+        {/* <Routes>
           <Route path="/" element={<LayoutContainer />}>
                 <Route index element={<LoginComponent />} />
                 <Route path="player-list" element={<PlayerListComponent />} />
@@ -28,6 +29,20 @@ function App() {
                 
           </Route>
 
+        </Routes> */}
+        <Routes>
+          <Route element={<LoginLayout />}>
+            <Route path="/" element={<LoginComponent />} />
+            <Route path="/login" element={<LoginComponent />} />
+            <Route path="*" element={<NotFoundComponent />} />
+          </Route>
+
+          <Route path="/authed" element={<LayoutContainer />}>
+            <Route path="player-list" element={<PlayerListComponent />} />
+            <Route path="registration" element={<PlayerRegistration />} />
+            <Route path="dashboard" element={<PlayerDashboard />} />
+            {/* <Route path="*" element={<LayoutContainer />} /> */}
+          </Route>
         </Routes>
         </PopupContext.Provider>
 

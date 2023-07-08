@@ -1,9 +1,16 @@
-import React from "react";
+import React,{useEffect} from "react";
+import { useDispatch} from 'react-redux'
+import { AUTH_STATUS } from '../../config/constants';
+import { setAuthStatus } from '../../redux/actions/players'
+import {  Navigate } from "react-router-dom";
 
 const NotFoundComponent = () =>{
-    return(
-        <div>NotFoundComponent</div>
-    )
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        localStorage.removeItem("auth");
+        dispatch(setAuthStatus(AUTH_STATUS.PENDING))
+    },[])
+    return <Navigate to="/" />;
 }
 
 export default NotFoundComponent;
