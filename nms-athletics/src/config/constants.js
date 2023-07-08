@@ -139,6 +139,12 @@ export const EVENTS = {
         disable:false
     },
     {
+        eventName: "600M",
+        eventId:"U_12_B_EVENTS_5",
+        selection: false,
+        disable:false
+    },
+    {
         eventName: "LONG_JUMP",
         eventId:"U_12_B_EVENTS_3",
         selection: false,
@@ -159,6 +165,12 @@ export const EVENTS = {
     {
         eventName: "400M",
         eventId:"U_12_G_EVENTS_2",
+        selection: false,
+        disable:false
+    },
+    {
+        eventName: "600M",
+        eventId:"U_12_G_EVENTS_5",
         selection: false,
         disable:false
     },
@@ -310,12 +322,6 @@ export const EVENTS = {
         {
             eventName: "1500M",
             eventId:"U_17_G_EVENTS_4",
-            selection: false,
-            disable:false
-        },
-        {
-            eventName: "LONG_JUMP",
-            eventId:"U_17_G_EVENTS_5",
             selection: false,
             disable:false
         },
