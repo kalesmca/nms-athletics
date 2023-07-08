@@ -10,8 +10,11 @@ import Alert from 'react-bootstrap/Alert';
 import {addPlayer, getPlayerList} from '../../redux/actions/players';
 import { useDispatch, useSelector } from 'react-redux';
 import {PopupContext } from '../../config/context';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom' ;
+import Image from 'react-bootstrap/Image';
+import qrImage from '../../assets/kalimuthu_qr_code.jpeg'
 
+const QRCODE_PATH = "../../assets/kalimuthu_qr_code.jpeg"
 function PlayerRegistration() {
   const playerState = useSelector((state)=>state.players)
   const [playerObj, setPlayerObj] = useState(initPlayerData);
@@ -263,7 +266,12 @@ function PlayerRegistration() {
       <Alert variant={"warning"}>
      
           <div>Entrance fee RS-200/player</div>
-          <div>GPay : 9944419808 (NMS Sports club)</div>
+          {/* <div>GPay : 9944419808 (NMS Sports club)</div> */}
+          <div>
+            <img src={qrImage} style={{width:"150px"}} alt="Pay 200 for Each player"></img>
+            {/* <Image src="../../assets/kalimuthu_qr_code.jpeg" thumbnail /> */}
+
+          </div>
          
         </Alert>
 
