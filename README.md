@@ -6,6 +6,14 @@
     Main = Before private route implemented code
     Private-route = implemented with routing production
 
-    If Private-route is success for bug fix we can create branch from Private-route. otherwise we can create branch from Main
+    Privateroute is working fine.
+    Live branch:Privateroute
+
+    Date: 9/Jul/2023
+
+    branchName: password-auth
+    features: password authentications for admins, Gpay QRCode for 200Amount"
+
+    
 
 
