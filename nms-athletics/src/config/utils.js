@@ -1,3 +1,5 @@
+import { adminList } from "./constants";
+
 //  it's return YYYY-MM-DD
 export const formatAppDate = (date) => {
     var d = new Date(date),
@@ -11,5 +13,16 @@ export const formatAppDate = (date) => {
         day = '0' + day;
 
     return [year, month, day].join('-');
+}
+
+export const checkIsAdmin = (data) =>{
+    let flag= false;
+
+    adminList.map((admin)=>{
+        if(admin.mobile == data){
+            flag=true;
+        }
+    })
+    return flag;
 }
 
