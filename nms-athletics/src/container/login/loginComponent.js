@@ -95,7 +95,7 @@ const LoginComponent = () => {
                 {
                   isAdmin ? (<Form.Group as={Col} controlId="formGridPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="text" placeholder="Admin Password" value={password}
+                    <Form.Control type="password" placeholder="Admin Password" value={password}
                       onChange={(e) => { setPassword(e.target.value) }} 
                     />
 
