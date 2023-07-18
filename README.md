@@ -14,6 +14,12 @@
     branchName: password-auth
     features: password authentications for admins, Gpay QRCode for 200Amount"
 
+# Live 
+
+    Branch: main branch uptoDate(last branch is password-auth)
+    version: 1.0.1
+    date: before 18/jul
+
     
 
 
