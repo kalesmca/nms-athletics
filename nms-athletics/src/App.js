@@ -10,12 +10,15 @@ import LoginComponent from './container/login/loginComponent';
 import NotFoundComponent from './container/notFound/notFoundComponent';
 import { PopupContext} from './config/context';
 import LoginLayout from './container/login/loginLayout';
-
+import { Provider } from "react-redux";
+import store from './redux/store';
 function App() {
   const [msgPopupFlag, setMsgPopupFlag] = useState(false);
   const [navigationPath, setNavigationPath] = useState("");
   const [popupObj, setPopupObj] = useState({});
   return (
+    <div data-testid="appTest">
+       <Provider store={store}>
     <BrowserRouter >
           <PopupContext.Provider value={{ msgPopupFlag, setMsgPopupFlag, navigationPath, setNavigationPath, popupObj, setPopupObj}}>
 
@@ -47,6 +50,8 @@ function App() {
         </PopupContext.Provider>
 
     </BrowserRouter>
+    </Provider>
+    </div>
 
   );
 }
