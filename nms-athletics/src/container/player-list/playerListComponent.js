@@ -9,6 +9,8 @@ import { EVENTS, PAYMENT_STATUS } from '../../config/constants';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { JsonToExcel } from "react-json-to-excel";
+
 const initEvent = { eventName: "ALL", eventId: "ALL" };
 const PlayerListComponent = () => {
     const playersState = useSelector((state) => state.players)
@@ -65,12 +67,29 @@ const PlayerListComponent = () => {
 
 
     }
+    const samplejson1 = [
+        { label: "C" },
+        { label: "Java" },
+        { label: "Go" },
+        { label: "Javascript" },
+        { label: "HTML" },
+        { label: "CSS" },
+        { label: "REACT" },
+        { label: "JQUERY" }
+      ];
     return (
         <div>
             {
                 playersState?.authStatus === "ADMIN_ACCESS" || playersState?.authStatus === "SUPER_ADMIN_ACCESS" ? (
                     // true ? (
                     <div>
+                        <div> 
+                        <JsonToExcel
+                                title="Download as Excel"
+                                data={playerList}
+                                fileName="sample-file"
+                            />
+                        </div>
                         <Form >
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="formGridEmail">

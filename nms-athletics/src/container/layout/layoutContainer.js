@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, Navigate } from "react-router-dom";
 import HeaderComponent from "./header";
 import { useNavigate } from 'react-router-dom';
 import "./header.scss";
@@ -10,6 +10,10 @@ const LayoutContainer = () =>{
     const navigation = (path) =>{
         navigate(path);
     }
+    const localAuth = JSON.parse(localStorage.getItem("auth"))
+    if (!localAuth || !localAuth?.mobile) {
+        return <Navigate to="/" />;
+      }
     return(
         <div>
             <div className="header-container">

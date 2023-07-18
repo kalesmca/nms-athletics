@@ -10,7 +10,9 @@ import Alert from 'react-bootstrap/Alert';
 import {addPlayer, getPlayerList} from '../../redux/actions/players';
 import { useDispatch, useSelector } from 'react-redux';
 import {PopupContext } from '../../config/context';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom' ;
+import Image from 'react-bootstrap/Image';
+import qrImage from '../../assets/200_qr_kalimuthu.jpeg'
 
 function PlayerRegistration() {
   const playerState = useSelector((state)=>state.players)
@@ -111,7 +113,7 @@ function PlayerRegistration() {
       console.log(playerObj)    
       dispatch(addPlayer(playerObj));
       // dispatch(getPlayerList());
-      const path = (playerState.authStatus === AUTH_STATUS.ADMIN_ACCESS || playerState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS) ? "player-list" : "dashboard" 
+      const path = (playerState.authStatus === AUTH_STATUS.ADMIN_ACCESS || playerState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS) ? "/authed/player-list" : "/authed/dashboard" 
       setNavigationPath(path);
       setPopupObj({title:"SUCCESS", content: "Player added successfully"})
       setMsgPopupFlag(true)
@@ -263,7 +265,12 @@ function PlayerRegistration() {
       <Alert variant={"warning"}>
      
           <div>Entrance fee RS-200/player</div>
-          <div>GPay : 9944419808 (NMS Sports club)</div>
+          {/* <div>GPay : 9944419808 (NMS Sports club)</div> */}
+          <div>
+            <img src={qrImage} style={{width:"150px"}} alt="Pay 200 for Each player"></img>
+            {/* <Image src="../../assets/kalimuthu_qr_code.jpeg" thumbnail /> */}
+
+          </div>
          
         </Alert>
 
