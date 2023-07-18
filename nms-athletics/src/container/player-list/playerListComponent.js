@@ -172,6 +172,7 @@ const PlayerListComponent = () => {
                                         <th>Chest No</th>
                                         <th>Events</th>
                                         <th>Pay Status</th>
+                                        <th>Created_ON</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -191,6 +192,7 @@ const PlayerListComponent = () => {
                                                         }
                                                         
                                                         <td>{player.paymentStatus}</td>
+                                                        <td>{player.createdOn}</td>
                                                     </tr>
                                                 )
                                             }

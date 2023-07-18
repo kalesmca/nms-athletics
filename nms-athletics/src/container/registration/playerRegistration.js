@@ -27,7 +27,7 @@ function PlayerRegistration() {
     if(!localAuth || !localAuth.mobile){
       navigate("")
     } 
-    setPlayerObj({...playerObj, registerMobile:localAuth?.mobile})
+    setPlayerObj({...playerObj, registerMobile:localAuth?.mobile, createdBy: localAuth?.mobile, createdOn: formatAppDate(new Date())})
   },[])
 
   const dateChage = (dateValue, genderValue) => {
@@ -110,7 +110,8 @@ function PlayerRegistration() {
     if(invalidForm) { 
       setErrObj({...errObj, ...tempErrObj})
     } else { 
-      console.log(playerObj)    
+      console.log(playerObj)   
+       
       dispatch(addPlayer(playerObj));
       // dispatch(getPlayerList());
       const path = (playerState.authStatus === AUTH_STATUS.ADMIN_ACCESS || playerState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS) ? "/authed/player-list" : "/authed/dashboard" 
@@ -267,7 +268,7 @@ function PlayerRegistration() {
           <div>Entrance fee RS-200/player</div>
           {/* <div>GPay : 9944419808 (NMS Sports club)</div> */}
           <div>
-            <img src={qrImage} style={{width:"150px"}} alt="Pay 200 for Each player"></img>
+            <img src={qrImage} style={{width:"150px"}} alt="Pay 200 for Each player" href="upi://pay?pa=nirushnigi-1@okicici&pn=N M S Sports club&aid=uGICAgIC1_uz4Fg" ></img>
             {/* <Image src="../../assets/kalimuthu_qr_code.jpeg" thumbnail /> */}
 
           </div>

@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
-import { setAuthStatus } from '../../redux/actions/players'
+import { setAuthStatus } from '../../redux/actions/players';
+import { global } from "../../config/locale";
 
 const HeaderComponent = () => {
     const playerState = useSelector((state) => state?.players)
@@ -34,7 +35,7 @@ const HeaderComponent = () => {
     }
     return (
         <div>
-            <div className="header">NMS Sports Club</div>
+            <div className="header">{global.label.clubName}</div>
 
             {
                 playerState?.authStatus === "ADMIN_ACCESS" || playerState?.authStatus === "SUPER_ADMIN_ACCESS" ? (
