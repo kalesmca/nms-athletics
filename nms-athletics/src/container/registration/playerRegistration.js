@@ -116,7 +116,7 @@ function PlayerRegistration() {
       // dispatch(getPlayerList());
       const path = (playerState.authStatus === AUTH_STATUS.ADMIN_ACCESS || playerState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS) ? "/authed/player-list" : "/authed/dashboard" 
       setNavigationPath(path);
-      setPopupObj({title:"SUCCESS", content: "Player added successfully"})
+      setPopupObj({title:"SUCCESS", content: "Player added successfully. Payment Status will update with in 2-3 Days"})
       setMsgPopupFlag(true)
     }
     console.log('invalidForm :', invalidForm)

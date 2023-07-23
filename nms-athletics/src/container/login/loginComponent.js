@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PopupContext } from '../../config/context';
 import Card from 'react-bootstrap/Card';
 import { checkIsAdmin } from "../../config/utils";
+import Alert from 'react-bootstrap/Alert';
 
 const LoginComponent = () => {
   const [mobile, setMobile] = useState("");
@@ -112,7 +113,17 @@ const LoginComponent = () => {
             </Card.Body>
           </Card>
         </Row>
+
       </Form>
+
+     
+      <Alert variant={"warning"}>
+     
+          <div>Entry Close Date : 28/07/2023</div>
+          
+    
+   </Alert>
+      
 
     </div>
 

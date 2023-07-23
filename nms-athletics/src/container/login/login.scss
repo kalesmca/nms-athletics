@@ -2,6 +2,8 @@
     display: flex;
     justify-content: center;
     margin-top:50px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .login-header-container{
@@ -17,4 +19,9 @@
         display: flex;
         justify-content: center;
         }
+}
+
+.last-date{
+    font-size: 18px;
+    font-weight: 500;
 }
