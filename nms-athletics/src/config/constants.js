@@ -361,7 +361,7 @@ export const PLAYER_STATUS = ["ACTIVE", "IN_ACTIVE"]
 
 export const initPlayerData = {
     name:"",
-    adharNumber:"",
+    adharNumber:"111111111111",
     clubName: "",
     dob:"",
     playerCategory:"",
@@ -378,7 +378,7 @@ export const initPlayerData = {
 
 export const initError = {
     name:{touched:false,err: false},
-    adharNumber: {touched:false,err: false},
+    adharNumber: {touched:true,err: false},
     dob:{touched:false,err: false},
     upi:{touched:false,err: false},
     mobile:{touched:false,err: false},

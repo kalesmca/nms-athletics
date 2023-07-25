@@ -179,7 +179,7 @@ function PlayerRegistration() {
           
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridPassword">
+        {/* <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label>Aadhar Number</Form.Label>
           <Form.Control type="number" placeholder="Player Aadhar Number" value={playerObj.adharNumber} 
             onChange={(e) => { setPlayerObj({ ...playerObj, adharNumber: e.target.value }) }} onBlur={(e)=> {getValidation("adharNumber")}}
@@ -187,7 +187,7 @@ function PlayerRegistration() {
           {
             errObj.adharNumber.err && errObj.adharNumber.touched && <div className='err'> 12 Digit AdharNumber</div>
           }
-        </Form.Group>
+        </Form.Group> */}
       </Row>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
