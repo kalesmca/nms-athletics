@@ -31,12 +31,18 @@
         [7:52 pm, 16/07/2023] V Arivu1: Free limit check
         [7:57 pm, 16/07/2023] V Arivu1: upi://pay?pa=nirushnigi-1@okicici&pn=N M S Sports club&aid=uGICAgIC1_uz4Fg
 
-# Last Commit and Deployment
+# Commit and Deployment Dates
 
     Date : 23/07/23
     version: 1.0.3
     Feature: Payment message added
     branch : password-auth
+
+    Date : 25/07/23
+    version: 1.0.4
+    Feature: Aadhar number removed
+    branch : password-auth
+
 
 
     
