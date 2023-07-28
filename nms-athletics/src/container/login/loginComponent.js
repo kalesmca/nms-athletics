@@ -86,7 +86,7 @@ const LoginComponent = () => {
               <Card.Text>
                 <Form.Group as={Col} controlId="formGridPassword">
                   <Form.Label>Coach/Player Mobile Number</Form.Label>
-                  <Form.Control type="number" placeholder="Mobile Number" value={mobile}
+                  <Form.Control type="number" placeholder="Mobile Number" value={mobile} 
                     onChange={(e) => { setMobile(e.target.value) }} onBlur={() => { setLocal() }}
                   />
                   {/* {
@@ -96,7 +96,7 @@ const LoginComponent = () => {
                 {
                   isAdmin ? (<Form.Group as={Col} controlId="formGridPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Admin Password" value={password}
+                    <Form.Control type="password" placeholder="Admin Password" value={password} 
                       onChange={(e) => { setPassword(e.target.value) }} 
                     />
 
@@ -119,7 +119,7 @@ const LoginComponent = () => {
      
       <Alert variant={"warning"}>
      
-          <div>Entry Close Date : 28/07/2023</div>
+          <div>Entry Close Date : 29/07/2023</div>
           
     
    </Alert>
