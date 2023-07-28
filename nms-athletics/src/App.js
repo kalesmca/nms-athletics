@@ -7,6 +7,7 @@ import PlayerDashboard from './container/player-dashboard/playerDashboard';
 import LayoutContainer from './container/layout/layoutContainer';
 import LoginComponent from './container/login/loginComponent';
 import NotFoundComponent from './container/notFound/notFoundComponent';
+import SourceDataComponent from './container/sourceData/sourceDataComponent';
 import { PopupContext} from './config/context';
 import LoginLayout from './container/login/loginLayout';
 import { Provider } from "react-redux";
@@ -43,6 +44,7 @@ function App() {
             <Route path="player-list" element={<PlayerListComponent />} />
             <Route path="registration" element={<PlayerRegistration />} />
             <Route path="dashboard" element={<PlayerDashboard />} />
+            <Route path="source" element={<SourceDataComponent />} />
             {/* <Route path="*" element={<LayoutContainer />} /> */}
           </Route>
         </Routes>

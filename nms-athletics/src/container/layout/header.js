@@ -57,6 +57,10 @@ const HeaderComponent = () => {
                                 {/* <i className="fas fa-chart-line" onClick={() => { navigation("/member-info") }}></i> */}
                                 <Link to="/authed/registration">Registration</Link>
                             </div>
+                            <div className='link'>
+                                {/* <i className="fas fa-chart-line" onClick={() => { navigation("/member-info") }}></i> */}
+                                <Link to="/authed/source">Source</Link>
+                            </div>
 
 
                         </nav>
