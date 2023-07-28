@@ -48,7 +48,7 @@ const PlayerListComponent = () => {
     }
 
     const viewPlayer = (player) => {
-        setPopupObj({ componentName: "ViewPlayerComponent", props: player, title: player.name })
+        setPopupObj({ componentName: "EditPlayerComponent", playerData: player, title: player.name })
         setMsgPopupFlag(true)
     }
 
@@ -67,29 +67,24 @@ const PlayerListComponent = () => {
 
 
     }
-    const samplejson1 = [
-        { label: "C" },
-        { label: "Java" },
-        { label: "Go" },
-        { label: "Javascript" },
-        { label: "HTML" },
-        { label: "CSS" },
-        { label: "REACT" },
-        { label: "JQUERY" }
-      ];
+    
+    const editPlayer = (player) =>{
+        setPopupObj({ componentName: "ViewPlayerComponent", props: player, title: player.name })
+        setMsgPopupFlag(true)
+    }
     return (
         <div>
             {
                 playersState?.authStatus === "ADMIN_ACCESS" || playersState?.authStatus === "SUPER_ADMIN_ACCESS" ? (
                     // true ? (
                     <div>
-                        <div> 
+                        {/* <div> 
                         <JsonToExcel
                                 title="Download as Excel"
                                 data={playerList}
                                 fileName="sample-file"
                             />
-                        </div>
+                        </div> */}
                         <Form >
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="formGridEmail">
@@ -193,6 +188,7 @@ const PlayerListComponent = () => {
                                                         
                                                         <td>{player.paymentStatus}</td>
                                                         <td>{player.createdOn}</td>
+                                                        <td><button onClick={()=>{editPlayer(player)}}>Edit</button></td>
                                                     </tr>
                                                 )
                                             }
