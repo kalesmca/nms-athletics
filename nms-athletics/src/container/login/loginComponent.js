@@ -116,11 +116,8 @@ const LoginComponent = () => {
 
      
       <Alert variant={"warning"}>
-        <div>
-          Please Select below link for NMS Athletics Registration
-        </div>
-          <a href="https://nms-registration.web.app/authed/registration" target="_blank"> Registration</a>
-          <div>Entry Close Date : 29/07/2023</div>
+        
+          <a href="https://nms-registration.web.app/" target="_blank">NMS Registration click here</a>
           
     
    </Alert>
