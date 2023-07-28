@@ -77,7 +77,7 @@ const LoginComponent = () => {
 
   return (
     <div className="login-container">
-      <Form >
+      {/* <Form >
         <Row className="mb-3">
 
           <Card style={{ width: '18rem' }}>
@@ -89,9 +89,7 @@ const LoginComponent = () => {
                   <Form.Control type="number" placeholder="Mobile Number" value={mobile} 
                     onChange={(e) => { setMobile(e.target.value) }} onBlur={() => { setLocal() }}
                   />
-                  {/* {
-            errObj.mobile.touched && errObj.mobile.err && <div className='err'> Valid mobile Number</div>
-          } */}
+                
                 </Form.Group>
                 {
                   isAdmin ? (<Form.Group as={Col} controlId="formGridPassword">
@@ -114,11 +112,14 @@ const LoginComponent = () => {
           </Card>
         </Row>
 
-      </Form>
+      </Form> */}
 
      
       <Alert variant={"warning"}>
-     
+        <div>
+          Please Select below link for NMS Athletics Registration
+        </div>
+          <a href="https://nms-registration.web.app/authed/registration" target="_blank"> Registration</a>
           <div>Entry Close Date : 29/07/2023</div>
           
     
