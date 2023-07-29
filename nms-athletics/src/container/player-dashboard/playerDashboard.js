@@ -5,6 +5,7 @@ import {getPlayerList} from '../../redux/actions/players';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import {PopupContext } from '../../config/context';
+import Alert from 'react-bootstrap/Alert';
 
 const PlayerDashboard = () =>{
     const playersState = useSelector((state)=> state.players)
@@ -61,7 +62,7 @@ const PlayerDashboard = () =>{
                                             <td>{player.selectedEvents.map((event, eIndex)=>{
                                                 return(<div key={eIndex}>{event.eventName}</div>)
                                             })}</td>
-                                            <td>PENDING</td>
+                                            <td>{player.paymentStatus}</td>
                                         </tr>
                                     )
                                 
@@ -78,6 +79,14 @@ const PlayerDashboard = () =>{
             <Button variant="primary" onClick={() => { navigation() }}>
         Add More Player
       </Button>
+            </div>
+            <div>
+            <Alert variant={"warning"}>
+     
+     <div>Payment Status will Update within 3 Days</div>
+     
+
+</Alert>
             </div>
         </div>
     )

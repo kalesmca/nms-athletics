@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col';
 
 const ViewPlayerComponent = (props) => {
     const localAuth = JSON.parse(localStorage.getItem("auth"));
-
+    const [flag, setFlag] = useState(false);
     const dispatch = useDispatch();
     const playersState = useSelector((state)=> state.players)
     const updatePlayer = (status) => {
@@ -72,13 +72,18 @@ const ViewPlayerComponent = (props) => {
                         <Col>Contact</Col>
                         <Col>{props?.player?.mobile}</Col>
                     </Row>
+                    <Row>
+                        <Col>Created BY</Col>
+                        <Col>{props?.player?.registerMobile}</Col>
+                    </Row>
                     {
                            playersState?.authStatus === "ADMIN_ACCESS" || playersState?.authStatus === "SUPER_ADMIN_ACCESS" ? (
                         // true ? (
 
                             <Row>
-                                <Col><Button variant="primary" onClick={() => { updatePlayer(PAYMENT_STATUS[0]) }} > PAID </Button></Col>
-                                <Col> <Button variant="primary" onClick={() => { updatePlayer(PAYMENT_STATUS[2]) }} > UN_PAID </Button></Col>
+                                <Col><Button variant="primary" disabled={flag} onClick={() => { setFlag(true); updatePlayer(PAYMENT_STATUS[0]) }} > PAID </Button></Col>
+                                <Col><Button variant="primary" disabled={flag} onClick={() => { setFlag(true); updatePlayer(PAYMENT_STATUS[3]) }} > NMS </Button></Col>
+                                <Col> <Button variant="primary" disabled={flag} onClick={() => { setFlag(true); updatePlayer(PAYMENT_STATUS[2]) }} > UN_PAID </Button></Col>
                             </Row>) : ""
 
                     }

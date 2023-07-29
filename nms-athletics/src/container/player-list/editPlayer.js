@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import "./registration.scss";
+import "./editPlayer.scss";
 import { U_6_TIME,U_8_TIME,U_10_TIME,U_12_TIME, U_14_TIME, U_17_TIME,initPlayerData, EVENTS, initError, AUTH_STATUS } from '../../config/constants';
 import { formatAppDate } from '../../config/utils';
 import Alert from 'react-bootstrap/Alert';
@@ -11,10 +11,10 @@ import {addPlayer, getPlayerList} from '../../redux/actions/players';
 import { useDispatch, useSelector } from 'react-redux';
 import {PopupContext } from '../../config/context';
 import { useNavigate } from 'react-router-dom' ;
-import Image from 'react-bootstrap/Image';
-import qrImage from '../../assets/200_qr_kalimuthu.jpeg'
+import { updateUser } from '../../redux/API/apiService';
 
-function PlayerRegistration() {
+
+function EditPlayerComponent() {
   const playerState = useSelector((state)=>state.players)
   const [playerObj, setPlayerObj] = useState(initPlayerData);
   const [errObj, setErrObj] = useState(initError)
@@ -23,11 +23,12 @@ function PlayerRegistration() {
 
   const {setMsgPopupFlag, setNavigationPath,popupObj, setPopupObj} = useContext(PopupContext);
   useEffect(() => {
-    const localAuth = JSON.parse(localStorage.getItem("auth"))
-    if(!localAuth || !localAuth.mobile){
-      navigate("")
-    } 
-    setPlayerObj({...playerObj, registerMobile:localAuth?.mobile, createdBy: localAuth?.mobile, createdOn: formatAppDate(new Date())})
+    // const localAuth = JSON.parse(localStorage.getItem("auth"))
+    // if(!localAuth || !localAuth.mobile){
+    //   navigate("")
+    // } 
+    console.log(popupObj)
+    setPlayerObj({...playerObj, ...popupObj.playerData})
   },[])
 
   const dateChage = (dateValue, genderValue) => {
@@ -112,12 +113,10 @@ function PlayerRegistration() {
     } else { 
       console.log(playerObj)   
        
-      dispatch(addPlayer(playerObj));
-      // dispatch(getPlayerList());
-      const path = (playerState.authStatus === AUTH_STATUS.ADMIN_ACCESS || playerState.authStatus === AUTH_STATUS.SUPER_ADMIN_ACCESS) ? "/authed/player-list" : "/authed/dashboard" 
-      setNavigationPath(path);
-      setPopupObj({title:"SUCCESS", content: "Player added successfully. Payment Status will update with in 2-3 Days"})
-      setMsgPopupFlag(true)
+    //   dispatch(addPlayer(playerObj));
+    updateUser(playerObj)
+      setPopupObj({})
+      setMsgPopupFlag(false)
     }
     console.log('invalidForm :', invalidForm)
   }
@@ -263,17 +262,7 @@ function PlayerRegistration() {
           }
         </Col>
       </Row>
-      <Alert variant={"warning"}>
      
-          <div>Entrance fee RS-200/player</div>
-          {/* <div>GPay : 9944419808 (NMS Sports club)</div> */}
-          <div>
-            <img src={qrImage} style={{width:"150px"}} alt="Pay 200 for Each player" href="upi://pay?pa=nirushnigi-1@okicici&pn=N M S Sports club&aid=uGICAgIC1_uz4Fg" ></img>
-            {/* <Image src="../../assets/kalimuthu_qr_code.jpeg" thumbnail /> */}
-
-          </div>
-         
-        </Alert>
 
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
@@ -301,7 +290,7 @@ function PlayerRegistration() {
 
 
       <Button variant="primary" onClick={() => { submit() }}>
-        Submit
+        Update
       </Button>
     </Form>
     </div>
@@ -310,4 +299,4 @@ function PlayerRegistration() {
   );
 }
 
-export default PlayerRegistration;
+export default EditPlayerComponent;

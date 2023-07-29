@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PopupContext } from '../../config/context';
 import Card from 'react-bootstrap/Card';
 import { checkIsAdmin } from "../../config/utils";
+import Alert from 'react-bootstrap/Alert';
 
 const LoginComponent = () => {
   const [mobile, setMobile] = useState("");
@@ -76,7 +77,7 @@ const LoginComponent = () => {
 
   return (
     <div className="login-container">
-      <Form >
+      {/* <Form >
         <Row className="mb-3">
 
           <Card style={{ width: '18rem' }}>
@@ -85,17 +86,15 @@ const LoginComponent = () => {
               <Card.Text>
                 <Form.Group as={Col} controlId="formGridPassword">
                   <Form.Label>Coach/Player Mobile Number</Form.Label>
-                  <Form.Control type="number" placeholder="Mobile Number" value={mobile}
+                  <Form.Control type="number" placeholder="Mobile Number" value={mobile} 
                     onChange={(e) => { setMobile(e.target.value) }} onBlur={() => { setLocal() }}
                   />
-                  {/* {
-            errObj.mobile.touched && errObj.mobile.err && <div className='err'> Valid mobile Number</div>
-          } */}
+                
                 </Form.Group>
                 {
                   isAdmin ? (<Form.Group as={Col} controlId="formGridPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Admin Password" value={password}
+                    <Form.Control type="password" placeholder="Admin Password" value={password} 
                       onChange={(e) => { setPassword(e.target.value) }} 
                     />
 
@@ -112,7 +111,17 @@ const LoginComponent = () => {
             </Card.Body>
           </Card>
         </Row>
-      </Form>
+
+      </Form> */}
+
+     
+      <Alert variant={"warning"}>
+        
+          <a href="https://nms-athletics-meet.web.app" target="_blank">NMS Registration click here</a>
+          
+    
+   </Alert>
+      
 
     </div>
 

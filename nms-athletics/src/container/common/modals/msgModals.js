@@ -7,11 +7,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AUTH_STATUS, adminList } from '../../../config/constants';
 import { setAuthStatus } from '../../../redux/actions/players';
 import ViewPlayerComponent from '../view-player/viewPlayer';
+import EditPlayerComponent from '../../player-list/editPlayer';
 
 const MessageModal = (props) => {
 
   const components = {
-    ViewPlayerComponent: ViewPlayerComponent
+    ViewPlayerComponent: ViewPlayerComponent,
+    EditPlayerComponent: EditPlayerComponent
   }
 
   const navigate = useNavigate();

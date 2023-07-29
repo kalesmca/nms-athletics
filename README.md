@@ -20,6 +20,31 @@
     version: 1.0.1
     date: before 18/jul
 
+## Features:
+    Date: 18/Jul
+    version: 1.0.2
+
+    new implementations:
+        [7:46 pm, 16/07/2023] V Arivu1: Created date should add for registration
+        [7:46 pm, 16/07/2023] V Arivu1: Payment status NMS
+        [7:49 pm, 16/07/2023] V Arivu1: Academy name change
+        [7:52 pm, 16/07/2023] V Arivu1: Free limit check
+        [7:57 pm, 16/07/2023] V Arivu1: upi://pay?pa=nirushnigi-1@okicici&pn=N M S Sports club&aid=uGICAgIC1_uz4Fg
+
+# Commit and Deployment Dates
+
+    Date : 23/07/23
+    version: 1.0.3
+    Feature: Payment message added
+    branch : password-auth
+
+    Date : 25/07/23
+    version: 1.0.4
+    Feature: Aadhar number removed
+    branch : password-auth
+
+
+
     
 
 
