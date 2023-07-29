@@ -117,7 +117,7 @@ const LoginComponent = () => {
      
       <Alert variant={"warning"}>
         
-          <a href="https://nms-registration.web.app/" target="_blank">NMS Registration click here</a>
+          <a href="https://nms-athletics-meet.web.app" target="_blank">NMS Registration click here</a>
           
     
    </Alert>
