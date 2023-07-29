@@ -116,8 +116,14 @@ const LoginComponent = () => {
 
      
       <Alert variant={"warning"}>
+
+
         
-          <a href="https://nms-athletics-meet.web.app" target="_blank">NMS Registration click here</a>
+          <a href="https://nms-admin-final.web.app/" target="_blank">Chest Number Click here</a>
+          <div>
+            Online Entry Closed
+            Offline Entry Please contact Head-Coach : Selva: "9965560087"
+          </div>
           
     
    </Alert>
