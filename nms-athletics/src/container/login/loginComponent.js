@@ -77,7 +77,7 @@ const LoginComponent = () => {
 
   return (
     <div className="login-container">
-      {/* <Form >
+      <Form >
         <Row className="mb-3">
 
           <Card style={{ width: '18rem' }}>
@@ -112,7 +112,7 @@ const LoginComponent = () => {
           </Card>
         </Row>
 
-      </Form> */}
+      </Form>
 
      
       <Alert variant={"warning"}>
@@ -120,10 +120,10 @@ const LoginComponent = () => {
 
         
           {/* <a href="https://nms-admin-final.web.app/" target="_blank">Chest Number Click here</a> */}
-          <div>
+          {/* <div>
             Registration Coming Soon
             Contact : 8682890117
-          </div>
+          </div> */}
           
     
    </Alert>

@@ -12,78 +12,334 @@ export const AUTH_STATUS = {
     "SUPER_ADMIN_ACCESS":"SUPER_ADMIN_ACCESS"
 } 
 
+//2023 Events
+// export const EVENTS = {
+//     U_6_B:[{
+//         eventName: "50M",
+//         eventId:"U_6_B_EVENTS_1",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "BALL_THROW",
+//         eventId:"U_6_B_EVENTS_2",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "30M_Hurdles",
+//         eventId:"U_6_B_EVENTS_3",
+//         selection: false,
+//         disable:false
+//     }],
+//     U_6_G:[{
+//         eventName: "50M",
+//         eventId:"U_6_G_EVENTS_1",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "BALL_THROW",
+//         eventId:"U_6_G_EVENTS_2",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "30M_Hurdles",
+//         eventId:"U_6_G_EVENTS_3",
+//         selection: false,
+//         disable:false
+//     }],
+//     U_8_B:[{
+//         eventName: "50M",
+//         eventId:"U_8_B_EVENTS_1",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "80M",
+//         eventId:"U_8_B_EVENTS_2",
+//         selection: false,
+//         disable:false
+//     },{
+//         eventName: "BALL_THROW",
+//         eventId:"U_8_B_EVENTS_3",
+//         selection: false,
+//         disable:false
+//     }],
+//     U_8_G:[{
+//         eventName: "50M",
+//         eventId:"U_8_G_EVENTS_1",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "80M",
+//         eventId:"U_8_G_EVENTS_2",
+//         selection: false,
+//         disable:false
+//     },{
+//         eventName: "BALL_THROW",
+//         eventId:"U_8_G_EVENTS_3",
+//         selection: false,
+//         disable:false
+//     }],
+//     U_10_B:[{
+//         eventName: "50M",
+//         eventId:"U_10_B_EVENTS_1",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "80M",
+//         eventId:"U_10_B_EVENTS_2",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "SHUTTLE_RUN",
+//         eventId:"U_10_B_EVENTS_3",
+//         selection: false,
+//         disable:false
+//     }],
+//     U_10_G:[{
+//         eventName: "50M",
+//         eventId:"U_10_G_EVENTS_1",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "80M",
+//         eventId:"U_10_G_EVENTS_2",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "SHUTTLE_RUN",
+//         eventId:"U_10_G_EVENTS_3",
+//         selection: false,
+//         disable:false
+//     }],
+//     U_12_B:[{
+//         eventName: "80M",
+//         eventId:"U_12_B_EVENTS_1",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "200M",
+//         eventId:"U_12_B_EVENTS_4",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "400M",
+//         eventId:"U_12_B_EVENTS_2",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "600M",
+//         eventId:"U_12_B_EVENTS_5",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "LONG_JUMP",
+//         eventId:"U_12_B_EVENTS_3",
+//         selection: false,
+//         disable:false
+//     }],
+//     U_12_G:[{
+//         eventName: "80M",
+//         eventId:"U_12_G_EVENTS_1",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "200M",
+//         eventId:"U_12_G_EVENTS_4",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "400M",
+//         eventId:"U_12_G_EVENTS_2",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "600M",
+//         eventId:"U_12_G_EVENTS_5",
+//         selection: false,
+//         disable:false
+//     },
+//     {
+//         eventName: "LONG_JUMP",
+//         eventId:"U_12_G_EVENTS_3",
+//         selection: false,
+//         disable:false
+//     }],
+//     U_14_B:[
+//         {
+//             eventName: "100M",
+//             eventId:"U_14_B_EVENTS_1",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "400M",
+//             eventId:"U_14_B_EVENTS_2",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "800M",
+//             eventId:"U_14_B_EVENTS_3",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "LONG_JUMP",
+//             eventId:"U_14_B_EVENTS_4",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "DISCUSS_THROW",
+//             eventId:"U_14_B_EVENTS_5",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "SHORT_PUT",
+//             eventId:"U_14_B_EVENTS_6",
+//             selection: false,
+//             disable:false
+//         }
+//     ],
+//     U_14_G:[
+//         {
+//             eventName: "400M",
+//             eventId:"U_14_G_EVENTS_1",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "100M",
+//             eventId:"U_14_G_EVENTS_2",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "800M",
+//             eventId:"U_14_B_EVENTS_3",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "DISCUSS_THROW",
+//             eventId:"U_14_G_EVENTS_4",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "LONG_JUMP",
+//             eventId:"U_14_G_EVENTS_5",
+//             selection: false,
+//             disable:false
+//         },
+        
+//         {
+//             eventName: "SHORT_PUT",
+//             eventId:"U_14_G_EVENTS_6",
+//             selection: false,
+//             disable:false
+//         }
+//     ],
+//     U_17_B:[
+//         {
+//             eventName: "200M",
+//             eventId:"U_17_B_EVENTS_1",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "400M",
+//             eventId:"U_17_B_EVENTS_2",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "800M",
+//             eventId:"U_17_B_EVENTS_3",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "1500M",
+//             eventId:"U_17_B_EVENTS_4",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "DISCUSS_THROW",
+//             eventId:"U_17_B_EVENTS_5",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "SHORT_PUT",
+//             eventId:"U_17_B_EVENTS_6",
+//             selection: false,
+//             disable:false
+//         },{
+//             eventName: "JAWLIN_THROW",
+//             eventId:"U_17_B_EVENTS_7",
+//             selection: false,
+//             disable:false
+//         }
+//     ],
+//     U_17_G:[
+//         {
+//             eventName: "200M",
+//             eventId:"U_17_G_EVENTS_1",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "400M",
+//             eventId:"U_17_G_EVENTS_2",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "800M",
+//             eventId:"U_17_G_EVENTS_3",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "1500M",
+//             eventId:"U_17_G_EVENTS_4",
+//             selection: false,
+//             disable:false
+//         },
+//         {
+//             eventName: "SHORT_PUT",
+//             eventId:"U_17_G_EVENTS_6",
+//             selection: false,
+//             disable:false
+//         },{
+//             eventName: "DISCUSS_THROW",
+//             eventId:"U_17_G_EVENTS_7",
+//             selection: false,
+//             disable:false
+//         }]
+// }
 
+//2024 Event
 export const EVENTS = {
-    U_6_B:[{
-        eventName: "50M",
-        eventId:"U_6_B_EVENTS_1",
-        selection: false,
-        disable:false
-    },
-    {
-        eventName: "BALL_THROW",
-        eventId:"U_6_B_EVENTS_2",
-        selection: false,
-        disable:false
-    },
-    {
-        eventName: "30M_Hurdles",
-        eventId:"U_6_B_EVENTS_3",
-        selection: false,
-        disable:false
-    }],
-    U_6_G:[{
-        eventName: "50M",
-        eventId:"U_6_G_EVENTS_1",
-        selection: false,
-        disable:false
-    },
-    {
-        eventName: "BALL_THROW",
-        eventId:"U_6_G_EVENTS_2",
-        selection: false,
-        disable:false
-    },
-    {
-        eventName: "30M_Hurdles",
-        eventId:"U_6_G_EVENTS_3",
-        selection: false,
-        disable:false
-    }],
-    U_8_B:[{
-        eventName: "50M",
-        eventId:"U_8_B_EVENTS_1",
-        selection: false,
-        disable:false
-    },
-    {
-        eventName: "80M",
-        eventId:"U_8_B_EVENTS_2",
-        selection: false,
-        disable:false
-    },{
-        eventName: "BALL_THROW",
-        eventId:"U_8_B_EVENTS_3",
-        selection: false,
-        disable:false
-    }],
-    U_8_G:[{
-        eventName: "50M",
-        eventId:"U_8_G_EVENTS_1",
-        selection: false,
-        disable:false
-    },
-    {
-        eventName: "80M",
-        eventId:"U_8_G_EVENTS_2",
-        selection: false,
-        disable:false
-    },{
-        eventName: "BALL_THROW",
-        eventId:"U_8_G_EVENTS_3",
-        selection: false,
-        disable:false
-    }],
     U_10_B:[{
         eventName: "50M",
         eventId:"U_10_B_EVENTS_1",
@@ -101,162 +357,154 @@ export const EVENTS = {
         eventId:"U_10_B_EVENTS_3",
         selection: false,
         disable:false
-    }],
-    U_10_G:[{
-        eventName: "50M",
-        eventId:"U_10_G_EVENTS_1",
-        selection: false,
-        disable:false
     },
     {
-        eventName: "80M",
-        eventId:"U_10_G_EVENTS_2",
+        eventName: "BALL_THROW",
+        eventId:"U_10_B_EVENTS_4",
         selection: false,
         disable:false
-    },
-    {
-        eventName: "SHUTTLE_RUN",
-        eventId:"U_10_G_EVENTS_3",
-        selection: false,
-        disable:false
-    }],
-    U_12_B:[{
-        eventName: "80M",
+    }
+],
+    U_10_G:[
+        {
+            eventName: "50M",
+            eventId:"U_10_G_EVENTS_1",
+            selection: false,
+            disable:false
+        },
+        {
+            eventName: "80M",
+            eventId:"U_10_G_EVENTS_2",
+            selection: false,
+            disable:false
+        },
+        {
+            eventName: "SHUTTLE_RUN",
+            eventId:"U_10_G_EVENTS_3",
+            selection: false,
+            disable:false
+        },
+        {
+            eventName: "BALL_THROW",
+            eventId:"U_10_G_EVENTS_4",
+            selection: false,
+            disable:false
+        }  
+    ],
+    U_12_B:[
+        {
+        eventName: "100M",
         eventId:"U_12_B_EVENTS_1",
         selection: false,
         disable:false
     },
     {
         eventName: "200M",
-        eventId:"U_12_B_EVENTS_4",
-        selection: false,
-        disable:false
-    },
-    {
-        eventName: "400M",
         eventId:"U_12_B_EVENTS_2",
         selection: false,
         disable:false
-    },
-    {
-        eventName: "600M",
-        eventId:"U_12_B_EVENTS_5",
-        selection: false,
-        disable:false
-    },
-    {
-        eventName: "LONG_JUMP",
+    },{
+        eventName: "400M",
         eventId:"U_12_B_EVENTS_3",
         selection: false,
         disable:false
-    }],
-    U_12_G:[{
-        eventName: "80M",
-        eventId:"U_12_G_EVENTS_1",
-        selection: false,
-        disable:false
-    },
-    {
-        eventName: "200M",
-        eventId:"U_12_G_EVENTS_4",
-        selection: false,
-        disable:false
-    },
-    {
-        eventName: "400M",
-        eventId:"U_12_G_EVENTS_2",
-        selection: false,
-        disable:false
-    },
-    {
-        eventName: "600M",
-        eventId:"U_12_G_EVENTS_5",
-        selection: false,
-        disable:false
     },
     {
         eventName: "LONG_JUMP",
-        eventId:"U_12_G_EVENTS_3",
+        eventId:"U_12_B_EVENTS_4",
         selection: false,
         disable:false
-    }],
-    U_14_B:[
+    }
+],
+    U_12_G:[
         {
             eventName: "100M",
-            eventId:"U_14_B_EVENTS_1",
+            eventId:"U_12_G_EVENTS_1",
             selection: false,
             disable:false
         },
         {
+            eventName: "200M",
+            eventId:"U_12_G_EVENTS_2",
+            selection: false,
+            disable:false
+        },{
             eventName: "400M",
-            eventId:"U_14_B_EVENTS_2",
-            selection: false,
-            disable:false
-        },
-        {
-            eventName: "800M",
-            eventId:"U_14_B_EVENTS_3",
+            eventId:"U_12_G_EVENTS_3",
             selection: false,
             disable:false
         },
         {
             eventName: "LONG_JUMP",
-            eventId:"U_14_B_EVENTS_4",
-            selection: false,
-            disable:false
-        },
-        {
-            eventName: "DISCUSS_THROW",
-            eventId:"U_14_B_EVENTS_5",
-            selection: false,
-            disable:false
-        },
-        {
-            eventName: "SHORT_PUT",
-            eventId:"U_14_B_EVENTS_6",
+            eventId:"U_12_G_EVENTS_4",
             selection: false,
             disable:false
         }
     ],
+    U_14_B:[
+    {
+        eventName: "100M",
+        eventId:"U_14_B_EVENTS_1",
+        selection: false,
+        disable:false
+    },
+    {
+        eventName: "400M",
+        eventId:"U_14_B_EVENTS_2",
+        selection: false,
+        disable:false
+    },
+    {
+        eventName: "800M",
+        eventId:"U_14_B_EVENTS_3",
+        selection: false,
+        disable:false
+    },
+    {
+        eventName: "LONG_JUMP",
+        eventId:"U_14_B_EVENTS_4",
+        selection: false,
+        disable:false
+    },
+    {
+        eventName: "SHOT_PUT",
+        eventId:"U_14_B_EVENTS_5",
+        selection: false,
+        disable:false
+    },
+],
     U_14_G:[
         {
-            eventName: "400M",
+            eventName: "100M",
             eventId:"U_14_G_EVENTS_1",
             selection: false,
             disable:false
         },
         {
-            eventName: "100M",
+            eventName: "200M",
             eventId:"U_14_G_EVENTS_2",
             selection: false,
             disable:false
         },
         {
-            eventName: "800M",
-            eventId:"U_14_B_EVENTS_3",
-            selection: false,
-            disable:false
-        },
-        {
-            eventName: "DISCUSS_THROW",
-            eventId:"U_14_G_EVENTS_4",
+            eventName: "400M",
+            eventId:"U_14_G_EVENTS_3",
             selection: false,
             disable:false
         },
         {
             eventName: "LONG_JUMP",
+            eventId:"U_14_G_EVENTS_4",
+            selection: false,
+            disable:false
+        },
+        {
+            eventName: "800M",
             eventId:"U_14_G_EVENTS_5",
             selection: false,
             disable:false
         },
-        
-        {
-            eventName: "SHORT_PUT",
-            eventId:"U_14_G_EVENTS_6",
-            selection: false,
-            disable:false
-        }
-    ],
+],
     U_17_B:[
         {
             eventName: "200M",
@@ -264,55 +512,46 @@ export const EVENTS = {
             selection: false,
             disable:false
         },
+        
         {
-            eventName: "400M",
+            eventName: "800M",
             eventId:"U_17_B_EVENTS_2",
             selection: false,
             disable:false
         },
         {
-            eventName: "800M",
+            eventName: "1500M",
             eventId:"U_17_B_EVENTS_3",
             selection: false,
             disable:false
         },
         {
-            eventName: "1500M",
+            eventName: "LONG_JUMP",
             eventId:"U_17_B_EVENTS_4",
             selection: false,
             disable:false
         },
         {
-            eventName: "DISCUSS_THROW",
-            eventId:"U_17_B_EVENTS_5",
-            selection: false,
-            disable:false
-        },
-        {
             eventName: "SHORT_PUT",
-            eventId:"U_17_B_EVENTS_6",
-            selection: false,
-            disable:false
-        },{
-            eventName: "JAWLIN_THROW",
-            eventId:"U_17_B_EVENTS_7",
+            eventId:"U_17_B_EVENTS_5",
             selection: false,
             disable:false
         }
     ],
     U_17_G:[
         {
+            eventName: "100M",
+            eventId:"U_17_G_EVENTS_2",
+            selection: false,
+            disable:false
+        },
+        {
             eventName: "200M",
             eventId:"U_17_G_EVENTS_1",
             selection: false,
             disable:false
         },
-        {
-            eventName: "400M",
-            eventId:"U_17_G_EVENTS_2",
-            selection: false,
-            disable:false
-        },
+        
         {
             eventName: "800M",
             eventId:"U_17_G_EVENTS_3",
@@ -324,31 +563,31 @@ export const EVENTS = {
             eventId:"U_17_G_EVENTS_4",
             selection: false,
             disable:false
-        },
-        {
-            eventName: "SHORT_PUT",
-            eventId:"U_17_G_EVENTS_6",
-            selection: false,
-            disable:false
-        },{
-            eventName: "DISCUSS_THROW",
-            eventId:"U_17_G_EVENTS_7",
-            selection: false,
-            disable:false
-        }]
+        }
+        ]
 }
+
 
 export const U_14_EVENTS = ["100M, 200M, 600M", "SHORT_PUT", "LONG_JUMP", "DISCUSS_THROW"]
 export const U_17_EVENTS = ["100M, 400M, 1500M", "SHORT_PUT", "LONG_JUMP", "DISCUSS_THROW", "JAWLIN_THROW"]
 export const U_19_EVENTS = ["100M, 200M, 1500M", "SHORT_PUT", "LONG_JUMP"]
 
-export const U_6_TIME = 1514764800000;  //01/01/2018  
-export const U_8_TIME = 1451606400000;  //01/01/20016  
-export const U_10_TIME = 1388534400000;  //01/01/2014 
-export const U_12_TIME = 1325376000000;  //01/01/2012  
-export const U_14_TIME = 1262304000000;  //01/01/2010  
-export const U_17_TIME = 1167696000000;  //01/01/2007  
-export const U_19_TIME = 1072915200000;  //01/01/2004  
+// 2023 record
+// export const U_6_TIME = 1514764800000;  //01/01/2018  
+// export const U_8_TIME = 1451606400000;  //01/01/20016  
+// export const U_10_TIME = 1388534400000;  //01/01/2014 
+// export const U_12_TIME = 1325376000000;  //01/01/2012  
+// export const U_14_TIME = 1262304000000;  //01/01/2010  
+// export const U_17_TIME = 1167696000000;  //01/01/2007  
+// export const U_19_TIME = 1072915200000;  //01/01/2004 
+
+//2024 date Record
+
+export const U_10_TIME = 1420050600000;  //01/01/2018  
+export const U_12_TIME = 1356978600000;  //01/01/20016  
+export const U_14_TIME = 1293820200000;  //01/01/2014 
+export const U_17_TIME = 1199125800000;  //01/01/2012  
+
 
 export const playerCategories = ["U_12", "U_14", "U_17", "U_19"]
 

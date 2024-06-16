@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import "./editPlayer.scss";
-import { U_6_TIME,U_8_TIME,U_10_TIME,U_12_TIME, U_14_TIME, U_17_TIME,initPlayerData, EVENTS, initError, AUTH_STATUS } from '../../config/constants';
+import { U_10_TIME,U_12_TIME,U_14_TIME,U_17_TIME,initPlayerData, EVENTS, initError, AUTH_STATUS } from '../../config/constants';
 import { formatAppDate } from '../../config/utils';
 import Alert from 'react-bootstrap/Alert';
 import {addPlayer, getPlayerList} from '../../redux/actions/players';
@@ -35,21 +35,7 @@ function EditPlayerComponent() {
     var d1 = new Date(dateValue);
     const time = d1.getTime();
    
-    if (time > U_6_TIME) {
-        
-      const playerCategory = genderValue === "MALE" ? "U_6_B" : "U_6_G"
-      const defaultEvents = eventDefauleSelection(playerCategory)
-      setPlayerObj({ ...playerObj, dob: dateValue, 
-                    playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
-    
-    }else if (time > U_8_TIME && time < U_6_TIME) {
-        
-      const playerCategory = genderValue === "MALE" ? "U_8_B" : "U_8_G"
-      const defaultEvents = eventDefauleSelection(playerCategory)
-      setPlayerObj({ ...playerObj, dob: dateValue, 
-                    playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
-    
-    }else if (time > U_10_TIME && time < U_8_TIME) {
+   if (time > U_10_TIME ) {
         
       const playerCategory = genderValue === "MALE" ? "U_10_B" : "U_10_G"
       const defaultEvents = eventDefauleSelection(playerCategory)

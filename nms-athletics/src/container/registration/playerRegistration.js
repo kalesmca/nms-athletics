@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import "./registration.scss";
-import { U_6_TIME,U_8_TIME,U_10_TIME,U_12_TIME, U_14_TIME, U_17_TIME,initPlayerData, EVENTS, initError, AUTH_STATUS } from '../../config/constants';
+import { U_10_TIME,U_12_TIME,U_14_TIME,U_17_TIME,initPlayerData, EVENTS, initError, AUTH_STATUS } from '../../config/constants';
 import { formatAppDate } from '../../config/utils';
 import Alert from 'react-bootstrap/Alert';
 import {addPlayer, getPlayerList} from '../../redux/actions/players';
@@ -34,21 +34,7 @@ function PlayerRegistration() {
     var d1 = new Date(dateValue);
     const time = d1.getTime();
    
-    if (time > U_6_TIME) {
-        
-      const playerCategory = genderValue === "MALE" ? "U_6_B" : "U_6_G"
-      const defaultEvents = eventDefauleSelection(playerCategory)
-      setPlayerObj({ ...playerObj, dob: dateValue, 
-                    playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
-    
-    }else if (time > U_8_TIME && time < U_6_TIME) {
-        
-      const playerCategory = genderValue === "MALE" ? "U_8_B" : "U_8_G"
-      const defaultEvents = eventDefauleSelection(playerCategory)
-      setPlayerObj({ ...playerObj, dob: dateValue, 
-                    playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
-    
-    }else if (time > U_10_TIME && time < U_8_TIME) {
+    if (time > U_10_TIME) {
         
       const playerCategory = genderValue === "MALE" ? "U_10_B" : "U_10_G"
       const defaultEvents = eventDefauleSelection(playerCategory)
@@ -56,34 +42,37 @@ function PlayerRegistration() {
                     playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
     
     }else if (time > U_12_TIME && time < U_10_TIME) {
+        
+      const playerCategory = genderValue === "MALE" ? "U_12_B" : "U_12_G"
+      const defaultEvents = eventDefauleSelection(playerCategory)
+      setPlayerObj({ ...playerObj, dob: dateValue, 
+                    playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
+    
+    }else if (time > U_14_TIME && time < U_12_TIME) {
+        
+      const playerCategory = genderValue === "MALE" ? "U_14_B" : "U_14_G"
+      const defaultEvents = eventDefauleSelection(playerCategory)
+      setPlayerObj({ ...playerObj, dob: dateValue, 
+                    playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
+    
+    }else if (time > U_17_TIME && time < U_14_TIME) {
 
-        const playerCategory = genderValue === "MALE" ? "U_12_B" : "U_12_G"
+        const playerCategory = genderValue === "MALE" ? "U_17_B" : "U_17_G"
         const defaultEvents = eventDefauleSelection(playerCategory)
         setPlayerObj({ ...playerObj, dob: dateValue, 
                       playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
       
-      }else if (time > U_14_TIME && time < U_12_TIME) {
-        const playerCategory = genderValue === "MALE" ? "U_14_B" : "U_14_G"
-        const defaultEvents = eventDefauleSelection(playerCategory)
-        setPlayerObj({ ...playerObj, dob: dateValue, 
-                      playerCategory: playerCategory, events: defaultEvents, selectedEvents:[],gender:genderValue  });
-      }else if (time > U_17_TIME && time < U_14_TIME) {
-        const playerCategory = genderValue === "MALE" ? "U_17_B" : "U_17_G"
-        const defaultEvents = eventDefauleSelection(playerCategory)
-        setPlayerObj({ ...playerObj, dob: dateValue, 
-                      playerCategory: playerCategory, events: defaultEvents, selectedEvents:[], gender:genderValue });
-      } else if(time< U_17_TIME) {
+    }else if(time< U_17_TIME) {
         const obj = {
           title : "Age Restriction",
-          content: "U-17 '01/01/2007' after born players only allowed please change date. ",
+          content: "U-17 '01/01/2008' after born players only allowed please change date. ",
           btn1:"Reset"
       }
       setPopupObj(obj);
       setMsgPopupFlag(true);
         
       }
-   
-   
+  
   }
 
   const eventDefauleSelection = (category) =>{
@@ -236,13 +225,11 @@ function PlayerRegistration() {
 
       <Alert variant={"primary"}>
      
-          <div>01/01/2018 After Born U_6</div>
-          <div>01/01/2016 After Born U_8</div>
-          <div>01/01/2014 After Born U_10</div>
-
-          <div>01/01/2012 After Born U_12</div>
-          <div>01/01/2010 After Born U_14</div>
-          <div>01/01/2007 After Born U_17</div>
+          <div>01/01/2015 After Born U_10</div>
+          <div>01/01/2013 After Born U_12</div>
+          <div>01/01/2011 After Born U_14</div>
+          <div>01/01/2008 After Born U_17</div>
+          
         </Alert>
 
 
@@ -256,7 +243,7 @@ function PlayerRegistration() {
           {
             playerObj.events.map((event, eIndex) => {
               return (
-                <Form.Check index={eIndex} label={event.eventName} checked={event.selection}
+                <Form.Check key={eIndex} index={eIndex} label={event.eventName} checked={event.selection}
                   disabled={event.disable} type="checkbox" onChange={(e) => { eventChange(e, eIndex, event) }} />
               )
             })
