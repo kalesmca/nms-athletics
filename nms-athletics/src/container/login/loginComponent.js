@@ -119,10 +119,10 @@ const LoginComponent = () => {
 
 
         
-          <a href="https://nms-admin-final.web.app/" target="_blank">Chest Number Click here</a>
+          {/* <a href="https://nms-admin-final.web.app/" target="_blank">Chest Number Click here</a> */}
           <div>
-            Online Entry Closed
-            Offline Entry Please contact Head-Coach : Selva: "9965560087"
+            Registration Coming Soon
+            Contact : 8682890117
           </div>
           
     
