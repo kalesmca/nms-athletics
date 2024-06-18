@@ -455,7 +455,7 @@ export const EVENTS = {
         disable:false
     },
     {
-        eventName: "800M",
+        eventName: "600M",
         eventId:"U_14_B_EVENTS_3",
         selection: false,
         disable:false
@@ -499,7 +499,7 @@ export const EVENTS = {
             disable:false
         },
         {
-            eventName: "800M",
+            eventName: "600M",
             eventId:"U_14_G_EVENTS_5",
             selection: false,
             disable:false
@@ -532,7 +532,7 @@ export const EVENTS = {
             disable:false
         },
         {
-            eventName: "SHORT_PUT",
+            eventName: "SHOT_PUT",
             eventId:"U_17_B_EVENTS_5",
             selection: false,
             disable:false
@@ -568,9 +568,9 @@ export const EVENTS = {
 }
 
 
-export const U_14_EVENTS = ["100M, 200M, 600M", "SHORT_PUT", "LONG_JUMP", "DISCUSS_THROW"]
-export const U_17_EVENTS = ["100M, 400M, 1500M", "SHORT_PUT", "LONG_JUMP", "DISCUSS_THROW", "JAWLIN_THROW"]
-export const U_19_EVENTS = ["100M, 200M, 1500M", "SHORT_PUT", "LONG_JUMP"]
+// export const U_14_EVENTS = ["100M, 200M, 600M", "SHORT_PUT", "LONG_JUMP", "DISCUSS_THROW"]
+// export const U_17_EVENTS = ["100M, 400M, 1500M", "SHORT_PUT", "LONG_JUMP", "DISCUSS_THROW", "JAWLIN_THROW"]
+// export const U_19_EVENTS = ["100M, 200M, 1500M", "SHORT_PUT", "LONG_JUMP"]
 
 // 2023 record
 // export const U_6_TIME = 1514764800000;  //01/01/2018  
