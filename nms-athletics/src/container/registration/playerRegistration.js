@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {PopupContext } from '../../config/context';
 import { useNavigate } from 'react-router-dom' ;
 import Image from 'react-bootstrap/Image';
-import qrImage from '../../assets/nms_payment_qr_code.png';
+import qrImage from '../../assets/paraman_qr.jpg';
 
 
 function PlayerRegistration() {
@@ -253,7 +253,7 @@ function PlayerRegistration() {
       </Row>
       <Alert variant={"warning"}>
      
-          <div>Entrance fee RS-150/player</div>
+          <div>Entrance fee RS-200/player</div>
           {/* <div>GPay : 9944419808 (NMS Sports club)</div> */}
           <div>
             <img src={qrImage} style={{width:"150px"}} alt="Pay 200 for Each player" href="upi://pay?pa=nirushnigi-1@okicici&pn=N M S Sports club&aid=uGICAgIC1_uz4Fg" ></img>
