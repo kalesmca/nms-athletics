@@ -12,7 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {PopupContext } from '../../config/context';
 import { useNavigate } from 'react-router-dom' ;
 import Image from 'react-bootstrap/Image';
-import qrImage from '../../assets/200_qr_kalimuthu.jpeg'
+import qrImage from '../../assets/paraman_qr.jpg';
+
 
 function PlayerRegistration() {
   const playerState = useSelector((state)=>state.players)
