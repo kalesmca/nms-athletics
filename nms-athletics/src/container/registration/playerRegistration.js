@@ -143,7 +143,10 @@ function PlayerRegistration() {
   const getValidation = (key) =>{
     let tempErrObj = errObj;
     tempErrObj[key].touched = true;
-    if(key==='mobile' || key==='upi' ){
+    if(key==='name'){
+      tempErrObj[key].err = !playerObj[key] || playerObj[key]?.toString().length <3 ? true : false
+    }
+    else if(key==='mobile' || key==='upi' ){
       tempErrObj[key].err = !playerObj[key] || playerObj[key]?.toString().length !=10 ? true : false
     } else if(key === "adharNumber") {
       tempErrObj[key].err = !playerObj[key] || playerObj[key]?.toString().length !=12 ? true : false
