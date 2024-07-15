@@ -2,6 +2,7 @@
 import {UPDATE_PLAYERS,UPDATE_AUTH_STATUS} from '../../config/actions';
 import { db } from "../../firebase-config";
 import {DB} from '../../config/constants';
+import {getSortedList} from '../../config/utils';
 
 import {
     collection,
@@ -19,6 +20,7 @@ export const getPlayerList = () => async (dispatch, getState) => {
         const data = await getDocs(playersCollectionRef);
         let dataList = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         console.log('data list:', dataList)
+        getSortedList(dataList, "createdOn", "DESC")
 
         const localAuth = JSON.parse(localStorage.getItem("auth"));
         const regPlayerList = dataList.filter((data)=> data.registerMobile === localAuth.mobile)
