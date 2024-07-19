@@ -595,7 +595,7 @@ export const U_12 = "U_12";
 export const U_14 = "U_14";
 export const U_17 = "U_17";
 export const U_19 = "U_19";
-export const PAYMENT_STATUS = ["PAYMENT_VERIFIED", "PAYMENT_NOT_VERIFIED", "NOT_PAID", "NMS"]
+export const PAYMENT_STATUS = ["PAYMENT_VERIFIED", "PAYMENT_NOT_VERIFIED", "NOT_PAID", "NMS", "SHIVA", "RAVI"]
 export const PLAYER_STATUS = ["ACTIVE", "IN_ACTIVE"]
 
 export const initPlayerData = {

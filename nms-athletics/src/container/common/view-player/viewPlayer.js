@@ -81,10 +81,18 @@ const ViewPlayerComponent = (props) => {
                         // true ? (
 
                             <Row>
-                                <Col><Button variant="primary" disabled={flag} onClick={() => { setFlag(true); updatePlayer(PAYMENT_STATUS[0]) }} > PAID </Button></Col>
+                                {
+                                PAYMENT_STATUS.map((status, statusIndex) => {
+                                    return(
+                                        <Col key={statusIndex}><Button style={{margin:"10px"}} variant="primary" disabled={flag} onClick={() => { setFlag(true); updatePlayer(status) }} > {status} </Button></Col> 
+                                    )
+                                    
+                                })
+                            }
+                                {/* <Col><Button variant="primary" disabled={flag} onClick={() => { setFlag(true); updatePlayer(PAYMENT_STATUS[0]) }} > PAID </Button></Col>
                                 <Col><Button variant="primary" disabled={flag} onClick={() => { setFlag(true); updatePlayer(PAYMENT_STATUS[3]) }} > NMS </Button></Col>
-                                <Col> <Button variant="primary" disabled={flag} onClick={() => { setFlag(true); updatePlayer(PAYMENT_STATUS[2]) }} > UN_PAID </Button></Col>
-                            </Row>) : ""
+                                <Col> <Button variant="primary" disabled={flag} onClick={() => { setFlag(true); updatePlayer(PAYMENT_STATUS[2]) }} > UN_PAID </Button></Col> */}
+                            </Row>) : <div>kalees</div>
 
                     }
 
