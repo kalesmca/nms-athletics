@@ -11,6 +11,8 @@ import { PopupContext } from '../../config/context';
 import Card from 'react-bootstrap/Card';
 import { checkIsAdmin } from "../../config/utils";
 import Alert from 'react-bootstrap/Alert';
+import school_location_qr from "../../assets/school_location_qr.jpg";
+
 
 const LoginComponent = () => {
   const [mobile, setMobile] = useState("");
@@ -116,8 +118,12 @@ const LoginComponent = () => {
 
      
       <Alert variant={"warning"}>
+        <div style={{fontWeight:600, fontSize:"18px"}}>Match MAP Location </div>
 
-
+      <div>
+                scan Here  ==>>
+            <img src={school_location_qr} style={{width:"150px", margin:"10px"}} alt="Pay 200 for Each player" href="upi://pay?pa=nirushnigi-1@okicici&pn=N M S Sports club&aid=uGICAgIC1_uz4Fg" ></img>
+          </div>
         
           {/* <a href="https://nms-admin-final.web.app/" target="_blank">Chest Number Click here</a> */}
           {/* <div>
