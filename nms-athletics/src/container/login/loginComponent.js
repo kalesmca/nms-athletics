@@ -26,7 +26,7 @@ const LoginComponent = () => {
   const submit = () => {
 
     if (isAdmin) {
-      if (((mobile=== "8682890117" || mobile=== "9944419808") && password === "VOLLEYBALL") || (mobile != "8682890117" && mobile != "9944419808" && password === "volleyball")) {
+      if (((mobile=== "8682890117" || mobile=== "9944419808" || mobile=== "9994374553") && password === "VOLLEYBALL") || (mobile != "8682890117" && mobile != "9944419808" && mobile != "9994374553" && password === "volleyball")) {
         loginConfirmModal()
       } else {
         const obj = {
