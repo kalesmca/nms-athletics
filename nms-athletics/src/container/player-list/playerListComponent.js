@@ -10,6 +10,16 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { JsonToExcel } from "react-json-to-excel";
+import { db } from "../../firebase-config";
+import {DB} from '../../config/constants';
+import {
+    collection,
+    getDocs,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+  } from "firebase/firestore";
 
 const initEvent = { eventName: "ALL", eventId: "ALL" };
 const PlayerListComponent = () => {
@@ -54,7 +64,8 @@ const PlayerListComponent = () => {
 
     const getQueryValidation = (player) => {
         let searchKeyFlag = true;
-        searchKeyFlag = !searchKey ? true : (player.name.toLowerCase().includes(searchKey.toLowerCase()) || player.upi.toLowerCase().includes(searchKey.toLowerCase())) ? true : false;
+        searchKeyFlag = !searchKey ? true : (player.name.toLowerCase().includes(searchKey.toLowerCase()) || player.upi.toLowerCase().includes(searchKey.toLowerCase()) || player.mobile.toLowerCase().includes(searchKey.toLowerCase()) 
+                        || player.clubName.toLowerCase().includes(searchKey.toLowerCase())) ? true : false;
         if ((playerCategory === "ALL" || player.playerCategory === playerCategory) &&
             (selectedEvent.eventId === "ALL" || selectedEvent.eventId == player.selectedEvents[0].eventId || selectedEvent.eventId === player.selectedEvents[1]?.eventId) &&
             (searchKeyFlag) &&
@@ -72,6 +83,16 @@ const PlayerListComponent = () => {
         setPopupObj({ componentName: "ViewPlayerComponent", props: player, title: player.name })
         setMsgPopupFlag(true)
     }
+    const deletePlayer = (player) =>{
+        // const userDoc = doc(db, DB.players, player.id);
+        // deleteDoc(userDoc);
+        
+        // setTimeout(()=>{
+        //     dispatch(getPlayerList());
+        // },1000)
+
+    }
+    let tableIndex = 0;
     return (
         <div>
             {
@@ -168,15 +189,21 @@ const PlayerListComponent = () => {
                                         <th>Events</th>
                                         <th>Pay Status</th>
                                         <th>Created_ON</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
+                                        
                                         playerList?.length ? playerList.map((player, pIndex) => {
+                                            
                                             if (getQueryValidation(player)) {
+                                                tableIndex = tableIndex +1;
                                                 return (
-                                                    <tr key={pIndex} onClick={() => { viewPlayer(player) }}>
-                                                        <td>{pIndex + 1}</td>
+                                                    <tr key={pIndex} 
+                                                    // onClick={() => { editPlayer(player) }}
+                                                    >
+                                                        <td>{tableIndex}</td>
                                                         <td>{player.name}</td>
                                                         <td>{player.playerCategory}</td>
                                                         <td>Not-yet</td>{
@@ -188,7 +215,13 @@ const PlayerListComponent = () => {
                                                         
                                                         <td>{player.paymentStatus}</td>
                                                         <td>{player.createdOn}</td>
-                                                        <td><button onClick={()=>{editPlayer(player)}}>Edit</button></td>
+                                                        {/* <td><button onClick={()=>{viewPlayer(player)}}>Edit</button></td> */}
+                                                        {/* <td><button onClick={()=>{editPlayer(player)}}>Payment Update</button></td> */}
+
+
+                                                        
+                                                        {/* <td><button onClick={()=>{deletePlayer(player)}}>Delete</button></td> */}
+                                                        
                                                     </tr>
                                                 )
                                             }
