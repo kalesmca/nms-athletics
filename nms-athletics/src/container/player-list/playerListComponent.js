@@ -11,6 +11,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { JsonToExcel } from "react-json-to-excel";
 import { db } from "../../firebase-config";
+import Button from 'react-bootstrap/Button';
+
 import {DB} from '../../config/constants';
 import {
     collection,
@@ -216,7 +218,13 @@ const PlayerListComponent = () => {
                                                         <td>{player.paymentStatus}</td>
                                                         <td>{player.createdOn}</td>
                                                         {/* <td><button onClick={()=>{viewPlayer(player)}}>Edit</button></td> */}
-                                                        {/* <td><button onClick={()=>{editPlayer(player)}}>Payment Update</button></td> */}
+                                                        {
+                                                            playersState?.authStatus === "SUPER_ADMIN_ACCESS" && (
+                                                                    <td>
+                                                                        <Button variant="primary" onClick={()=>{editPlayer(player)}}>Payment Update</Button>
+                                                                    </td>
+                                                            )
+                                                        }
 
 
                                                         
