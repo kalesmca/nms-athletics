@@ -9,9 +9,11 @@ import { EVENTS, PAYMENT_STATUS } from '../../config/constants';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { JsonToExcel } from "react-json-to-excel";
+// import { JsonToExcel } from "react-json-to-excel";
 import { db } from "../../firebase-config";
 import Button from 'react-bootstrap/Button';
+import { exportToExcel } from 'react-json-to-excel';
+
 
 import {DB} from '../../config/constants';
 import {
@@ -36,13 +38,16 @@ const PlayerListComponent = () => {
     const { msgPopupFlag, setMsgPopupFlag, navigationPath, setNavigationPath, popupObj, setPopupObj } = useContext(PopupContext)
     const dispatch = useDispatch();
     useEffect(() => {
-        console.log('appSate:', playersState);
+        // console.log('appSate:', playersState);
+        console.log("filter players :", filteredPlayerList);
+
     })
     useEffect(() => {
         dispatch(getPlayerList());
+        
     }, [])
     useEffect(() => {
-        setPlayerList(playersState.playerList)
+        setPlayerList(playersState.playerList);
     }, [playersState])
     // useEffect(() => {
     //     setEvents(EVENTS[playerCategory])
@@ -95,6 +100,7 @@ const PlayerListComponent = () => {
 
     }
     let tableIndex = 0;
+    let filteredPlayerList = [];
     return (
         <div>
             {
@@ -179,7 +185,10 @@ const PlayerListComponent = () => {
 
                                 </Dropdown.Menu>
                             </Dropdown>
+                            <Button variant="primary" onClick={()=>{exportToExcel(filteredPlayerList, 'filteredList')}}>Download</Button>
+
                         </div>
+                        
                         <div>
                             <Table responsive="sm">
                                 <thead>
@@ -201,6 +210,7 @@ const PlayerListComponent = () => {
                                             
                                             if (getQueryValidation(player)) {
                                                 tableIndex = tableIndex +1;
+                                                filteredPlayerList = [...filteredPlayerList, ...[player]]
                                                 return (
                                                     <tr key={pIndex} 
                                                     // onClick={() => { editPlayer(player) }}
