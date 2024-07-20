@@ -47,7 +47,8 @@ const PlayerListComponent = () => {
         
     }, [])
     useEffect(() => {
-        setPlayerList(playersState.playerList);
+        // setPlayerList(playersState.playerList);
+        getChestNumber(playersState.playerList)
     }, [playersState])
     // useEffect(() => {
     //     setEvents(EVENTS[playerCategory])
@@ -101,6 +102,58 @@ const PlayerListComponent = () => {
     }
     let tableIndex = 0;
     let filteredPlayerList = [];
+    let excluedList = [87,88,94,95,104,105,106,107,108,109,110,111,112,113,114,115,116,117,126,134,140,141,142,143,144,145,146,151,162,163,164,165,184,188,189,190,191,192,193,194,195,196,214,218,234,253,254,255,256,257,258,274,293,294,
+        295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,321,322,323,325,327,333,336,339,343,905,933,934,935,936,937,943,989,998,999]
+    let chestNumbers = 0;
+    let nmsChestNumber=900;
+    // const incrementOne = (number) => {
+    //     return number+1
+    // }
+    const getChestNumber = (dataList) =>{
+        let newObj = {};
+        let newList = [];
+        dataList.map((data)=>{
+            
+            if(newObj.hasOwnProperty(data.paymentStatus)){
+                newObj[data.paymentStatus] = [...newObj[data.paymentStatus],...[data]] 
+            } else {
+                newObj[data.paymentStatus] = [data];
+            }
+        })
+        Object.keys(newObj).map((key) =>{
+            newList = [...newList, ...newObj[key]];
+
+        })
+        newList.forEach(data => {
+            
+            
+            
+            
+            if(data.paymentStatus === "PAYMENT_VERIFIED" || data.paymentStatus === "SHIVA" || data.paymentStatus === "RAVI" || data.paymentStatus === "CASH" ){
+                chestNumbers = chestNumbers +1;
+                while(excluedList.includes(chestNumbers)){
+                    chestNumbers = chestNumbers+1;
+                }
+
+                data.chestNumber = chestNumbers; 
+            }
+            else if(data.paymentStatus === "NMS"){
+                nmsChestNumber= nmsChestNumber + 1;
+                while(excluedList.includes(nmsChestNumber)){
+                    nmsChestNumber = nmsChestNumber+1;
+                } 
+                data.chestNumber = nmsChestNumber; 
+            } else {
+                data.chestNumber = "NO";
+            }
+            
+        });
+        console.log("newObj",newObj)
+        console.log("newList",newList);
+
+        setPlayerList(newList);
+
+    }
     return (
         <div>
             {
@@ -197,6 +250,7 @@ const PlayerListComponent = () => {
                                         <th>Name</th>
                                         <th>Category</th>
                                         <th>Chest No</th>
+                                        <th>ClubName</th>
                                         <th>Events</th>
                                         <th>Pay Status</th>
                                         <th>Created_ON</th>
@@ -218,7 +272,9 @@ const PlayerListComponent = () => {
                                                         <td>{tableIndex}</td>
                                                         <td>{player.name}</td>
                                                         <td>{player.playerCategory}</td>
-                                                        <td>Not-yet</td>{
+                                                        <td>{player.chestNumber}</td>
+                                                        <td>{player.clubName}</td>
+                                                        {
                                                             player?.selectedEvents?.length ? 
                                                             (<td>{player?.selectedEvents.map((event, eIndex) => {
                                                                 return (<div key={eIndex}>{event.eventName}</div>)

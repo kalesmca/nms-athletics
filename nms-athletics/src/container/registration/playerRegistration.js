@@ -157,148 +157,151 @@ function PlayerRegistration() {
     
   }
 
-  return (
-    <div>
-      <Form >
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Player Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter palyer Name" value={playerObj.name}
-             onChange={(e) => { setPlayerObj({ ...playerObj, name: e.target.value }) }} onBlur={(e)=> {getValidation("name")}}
-          />
-          {
-            errObj.name.err && errObj.name.touched && <div className='err'> Valid Player Name</div>
-          }
+  // return (
+  //   <div>
+  //     <Form >
+  //     <Row className="mb-3">
+  //       <Form.Group as={Col} controlId="formGridEmail">
+  //         <Form.Label>Player Name</Form.Label>
+  //         <Form.Control type="text" placeholder="Enter palyer Name" value={playerObj.name}
+  //            onChange={(e) => { setPlayerObj({ ...playerObj, name: e.target.value }) }} onBlur={(e)=> {getValidation("name")}}
+  //         />
+  //         {
+  //           errObj.name.err && errObj.name.touched && <div className='err'> Valid Player Name</div>
+  //         }
           
-        </Form.Group>
+  //       </Form.Group>
 
-        {/* <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Aadhar Number</Form.Label>
-          <Form.Control type="number" placeholder="Player Aadhar Number" value={playerObj.adharNumber} 
-            onChange={(e) => { setPlayerObj({ ...playerObj, adharNumber: e.target.value }) }} onBlur={(e)=> {getValidation("adharNumber")}}
-          />
-          {
-            errObj.adharNumber.err && errObj.adharNumber.touched && <div className='err'> 12 Digit AdharNumber</div>
-          }
-        </Form.Group> */}
-      </Row>
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Club/School Name</Form.Label>
-          <Form.Control type="text" placeholder="Optional" value={playerObj.clubName}
-            onChange={(e) => { setPlayerObj({ ...playerObj, clubName: e.target.value }) }} 
-          />
-        </Form.Group>
+  //       {/* <Form.Group as={Col} controlId="formGridPassword">
+  //         <Form.Label>Aadhar Number</Form.Label>
+  //         <Form.Control type="number" placeholder="Player Aadhar Number" value={playerObj.adharNumber} 
+  //           onChange={(e) => { setPlayerObj({ ...playerObj, adharNumber: e.target.value }) }} onBlur={(e)=> {getValidation("adharNumber")}}
+  //         />
+  //         {
+  //           errObj.adharNumber.err && errObj.adharNumber.touched && <div className='err'> 12 Digit AdharNumber</div>
+  //         }
+  //       </Form.Group> */}
+  //     </Row>
+  //     <Row className="mb-3">
+  //       <Form.Group as={Col} controlId="formGridEmail">
+  //         <Form.Label>Club/School Name</Form.Label>
+  //         <Form.Control type="text" placeholder="Optional" value={playerObj.clubName}
+  //           onChange={(e) => { setPlayerObj({ ...playerObj, clubName: e.target.value }) }} 
+  //         />
+  //       </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Date of Birth</Form.Label>
-          <Form.Control type="date" placeholder="DOB as per Aadhar card" value={playerObj.dob} onBlur={(e)=> {getValidation("dob")}}
-            onChange={(e) => { dateChage(e.target.value, playerObj.gender) }}
+  //       <Form.Group as={Col} controlId="formGridPassword">
+  //         <Form.Label>Date of Birth</Form.Label>
+  //         <Form.Control type="date" placeholder="DOB as per Aadhar card" value={playerObj.dob} onBlur={(e)=> {getValidation("dob")}}
+  //           onChange={(e) => { dateChage(e.target.value, playerObj.gender) }}
             
-          />
-          {
-            errObj.dob.touched && errObj.dob.err && <div className='err'> Please select Date of Birth</div>
-          }
-        </Form.Group>
-      </Row>
+  //         />
+  //         {
+  //           errObj.dob.touched && errObj.dob.err && <div className='err'> Please select Date of Birth</div>
+  //         }
+  //       </Form.Group>
+  //     </Row>
 
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="gender">
-          <Form.Label>Gender : </Form.Label>
-          <Form.Check
-            inline
-            label="MALE"
-            name="group1"
-            type={"radio"}
-            id={`inline-${"Male"}-2`}
-            checked={playerObj.gender === "MALE" ? true : false}
-            onClick={() => {dateChage(playerObj.dob, "MALE") }}
-          />
-          <Form.Check
-            inline
-            label="FEMALE"
-            name="group1"
-            type={"radio"}
-            checked={playerObj.gender === "FEMALE" ? true : false}
-            onClick={() => {dateChage(playerObj.dob, "FEMALE") }}
-            id={`inline-${'FeMale'}-2`}
-          />
-        </Form.Group>
+  //     <Row className="mb-3">
+  //       <Form.Group as={Col} controlId="gender">
+  //         <Form.Label>Gender : </Form.Label>
+  //         <Form.Check
+  //           inline
+  //           label="MALE"
+  //           name="group1"
+  //           type={"radio"}
+  //           id={`inline-${"Male"}-2`}
+  //           checked={playerObj.gender === "MALE" ? true : false}
+  //           onClick={() => {dateChage(playerObj.dob, "MALE") }}
+  //         />
+  //         <Form.Check
+  //           inline
+  //           label="FEMALE"
+  //           name="group1"
+  //           type={"radio"}
+  //           checked={playerObj.gender === "FEMALE" ? true : false}
+  //           onClick={() => {dateChage(playerObj.dob, "FEMALE") }}
+  //           id={`inline-${'FeMale'}-2`}
+  //         />
+  //       </Form.Group>
 
-      </Row>
+  //     </Row>
 
-      <Alert variant={"primary"}>
+  //     <Alert variant={"primary"}>
      
-          <div>01/01/2015 After Born U_10</div>
-          <div>01/01/2013 After Born U_12</div>
-          <div>01/01/2011 After Born U_14</div>
-          <div>01/01/2008 After Born U_17</div>
+  //         <div>01/01/2015 After Born U_10</div>
+  //         <div>01/01/2013 After Born U_12</div>
+  //         <div>01/01/2011 After Born U_14</div>
+  //         <div>01/01/2008 After Born U_17</div>
           
-        </Alert>
+  //       </Alert>
 
 
-      <Form.Group className="mb-3" controlId="formGridAddress1">
-        <Form.Label className='player-category'> Player Category:: </Form.Label>
-        <Form.Label className='player-category-selection'> {playerObj.playerCategory ? playerObj.playerCategory : "Select your Date of Birth"} </Form.Label>
-      </Form.Group>
+  //     <Form.Group className="mb-3" controlId="formGridAddress1">
+  //       <Form.Label className='player-category'> Player Category:: </Form.Label>
+  //       <Form.Label className='player-category-selection'> {playerObj.playerCategory ? playerObj.playerCategory : "Select your Date of Birth"} </Form.Label>
+  //     </Form.Group>
 
-      <Row className="mb-3">
-        <Col sm={{ span: 10, offset: 1 }}>
-          {
-            playerObj.events.map((event, eIndex) => {
-              return (
-                <Form.Check key={eIndex} index={eIndex} label={event.eventName} checked={event.selection}
-                  disabled={event.disable} type="checkbox" onChange={(e) => { eventChange(e, eIndex, event) }} />
-              )
-            })
-          }
-        </Col>
-      </Row>
-      <Alert variant={"warning"}>
+  //     <Row className="mb-3">
+  //       <Col sm={{ span: 10, offset: 1 }}>
+  //         {
+  //           playerObj.events.map((event, eIndex) => {
+  //             return (
+  //               <Form.Check key={eIndex} index={eIndex} label={event.eventName} checked={event.selection}
+  //                 disabled={event.disable} type="checkbox" onChange={(e) => { eventChange(e, eIndex, event) }} />
+  //             )
+  //           })
+  //         }
+  //       </Col>
+  //     </Row>
+  //     <Alert variant={"warning"}>
      
-          <div>Entrance fee RS-200/player</div>
-          {/* <div>GPay : 9944419808 (NMS Sports club)</div> */}
-          <div>
-            <img src={qrImage} style={{width:"150px"}} alt="Pay 200 for Each player" href="upi://pay?pa=nirushnigi-1@okicici&pn=N M S Sports club&aid=uGICAgIC1_uz4Fg" ></img>
-            {/* <Image src="../../assets/kalimuthu_qr_code.jpeg" thumbnail /> */}
+  //         <div>Entrance fee RS-200/player</div>
+  //         {/* <div>GPay : 9944419808 (NMS Sports club)</div> */}
+  //         <div>
+  //           <img src={qrImage} style={{width:"150px"}} alt="Pay 200 for Each player" href="upi://pay?pa=nirushnigi-1@okicici&pn=N M S Sports club&aid=uGICAgIC1_uz4Fg" ></img>
+  //           {/* <Image src="../../assets/kalimuthu_qr_code.jpeg" thumbnail /> */}
 
-          </div>
+  //         </div>
          
-        </Alert>
+  //       </Alert>
 
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>UPI Mobile Number</Form.Label>
-          <Form.Control type="number" placeholder="Google-Pay Number" value={playerObj.upi} onBlur={(e)=> {getValidation("upi")}}
-            onChange={(e) => { setPlayerObj({ ...playerObj, upi: e.target.value }) }}
-          />
-          {
-            errObj.upi.touched && errObj.upi.err && <div className='err'> Valid GPay Number</div>
-          }
-        </Form.Group>
+  //     <Row className="mb-3">
+  //       <Form.Group as={Col} controlId="formGridEmail">
+  //         <Form.Label>UPI Mobile Number</Form.Label>
+  //         <Form.Control type="number" placeholder="Google-Pay Number" value={playerObj.upi} onBlur={(e)=> {getValidation("upi")}}
+  //           onChange={(e) => { setPlayerObj({ ...playerObj, upi: e.target.value }) }}
+  //         />
+  //         {
+  //           errObj.upi.touched && errObj.upi.err && <div className='err'> Valid GPay Number</div>
+  //         }
+  //       </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Contact Mobile</Form.Label>
-          <Form.Control type="number" placeholder="Mobile Number" value={playerObj.mobile}
-            onChange={(e) => { setPlayerObj({ ...playerObj, mobile: e.target.value }) }} onBlur={(e)=> {getValidation("mobile")}}
-          />
-          {
-            errObj.mobile.touched && errObj.mobile.err && <div className='err'> Valid mobile Number</div>
-          }
-        </Form.Group>
+  //       <Form.Group as={Col} controlId="formGridPassword">
+  //         <Form.Label>Contact Mobile</Form.Label>
+  //         <Form.Control type="number" placeholder="Mobile Number" value={playerObj.mobile}
+  //           onChange={(e) => { setPlayerObj({ ...playerObj, mobile: e.target.value }) }} onBlur={(e)=> {getValidation("mobile")}}
+  //         />
+  //         {
+  //           errObj.mobile.touched && errObj.mobile.err && <div className='err'> Valid mobile Number</div>
+  //         }
+  //       </Form.Group>
 
         
-      </Row>
+  //     </Row>
 
 
-      <Button variant="primary" onClick={() => { submit() }}>
-        Submit
-      </Button>
-    </Form>
-    </div>
+  //     <Button variant="primary" onClick={() => { submit() }}>
+  //       Submit
+  //     </Button>
+  //   </Form>
+  //   </div>
     
     
-  );
+  // );
+  return(
+    <div>NO REGISTRATION</div>
+  )
 }
 
 export default PlayerRegistration;
