@@ -168,15 +168,18 @@ const PlayerListComponent = () => {
 
     }
     const downloadFilteredData = () =>{
-        let tempList = JSON.parse(JSON.stringify(filteredPlayerList));
+        let tempList = JSON.parse(JSON.stringify(playerList));
         let filteredList = [];
         tempList.map((data)=>{
             if(data.chestNumber != "NO"){
                 let obj = {
                     CHEST_NUMBER: data.chestNumber,
                     NAME:data.name,
-                    EVENT: playerCategory,
-                    CLUB:  data.clubName
+                    CATEGORY: data.playerCategory,
+                    CLUB:  data.clubName,
+                    EVENTS: JSON.stringify(data.selectedEvents[0]?.eventName) + JSON.stringify(data.selectedEvents[1]?.eventName ),
+                    DOB:data.dob,
+                    MOBILE:data.mobile
                 };
                 filteredList.push(obj);
             }

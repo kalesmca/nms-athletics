@@ -58,7 +58,7 @@ const PlayerDashboard = () => {
                     <td>{pIndex + 1}</td>
                     <td>{player.name}</td>
                     <td>{player.playerCategory}</td>
-                    <td>Not-yet</td>
+                    <td>{player.chestNumber}</td>
                     <td>
                       {player.selectedEvents.map((event, eIndex) => {
                         return <div key={eIndex}>{event.eventName}</div>;
