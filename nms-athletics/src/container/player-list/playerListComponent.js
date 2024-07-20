@@ -12,7 +12,8 @@ import Row from 'react-bootstrap/Row';
 // import { JsonToExcel } from "react-json-to-excel";
 import { db } from "../../firebase-config";
 import Button from 'react-bootstrap/Button';
-import { exportToExcel } from 'react-json-to-excel';
+import { exportToExcel, JsonToExcel } from 'react-json-to-excel';
+import { updateUser } from '../../redux/API/apiService';
 
 
 import {DB} from '../../config/constants';
@@ -24,6 +25,7 @@ import {
     deleteDoc,
     doc,
   } from "firebase/firestore";
+import { json } from "react-router-dom";
 
 const initEvent = { eventName: "ALL", eventId: "ALL" };
 const PlayerListComponent = () => {
@@ -37,6 +39,7 @@ const PlayerListComponent = () => {
     const [selectedEvent, setSelectedEvent] = useState(initEvent)
     const { msgPopupFlag, setMsgPopupFlag, navigationPath, setNavigationPath, popupObj, setPopupObj } = useContext(PopupContext)
     const dispatch = useDispatch();
+
     useEffect(() => {
         // console.log('appSate:', playersState);
         console.log("filter players :", filteredPlayerList);
@@ -47,12 +50,24 @@ const PlayerListComponent = () => {
         
     }, [])
     useEffect(() => {
-        // setPlayerList(playersState.playerList);
-        getChestNumber(playersState.playerList)
+        setPlayerList(playersState.playerList);
+        // getChestNumber(playersState.playerList)
     }, [playersState])
+
     // useEffect(() => {
     //     setEvents(EVENTS[playerCategory])
     // }, [playerCategory])
+
+    const updateChestDB = () =>{
+        playerList.map((player,pIndex) =>{
+            setTimeout(()=>{
+                console.log("coming",pIndex)
+                updateUser(player)
+
+            },((pIndex+1)*300))
+        })
+        
+    }
     const categoryQuery = (e) => {
         console.log(e);
         setPlayerCategory(e);
@@ -106,9 +121,7 @@ const PlayerListComponent = () => {
         295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,321,322,323,325,327,333,336,339,343,905,933,934,935,936,937,943,989,998,999]
     let chestNumbers = 0;
     let nmsChestNumber=900;
-    // const incrementOne = (number) => {
-    //     return number+1
-    // }
+    
     const getChestNumber = (dataList) =>{
         let newObj = {};
         let newList = [];
@@ -129,7 +142,7 @@ const PlayerListComponent = () => {
             
             
             
-            if(data.paymentStatus === "PAYMENT_VERIFIED" || data.paymentStatus === "SHIVA" || data.paymentStatus === "RAVI" || data.paymentStatus === "CASH" ){
+            if(data.paymentStatus === "PAYMENT_VERIFIED" || data.paymentStatus === "SHIVA" || data.paymentStatus === "RAVI" || data.paymentStatus === "CASH" || data.paymentStatus === "WAITING" ){
                 chestNumbers = chestNumbers +1;
                 while(excluedList.includes(chestNumbers)){
                     chestNumbers = chestNumbers+1;
@@ -154,8 +167,30 @@ const PlayerListComponent = () => {
         setPlayerList(newList);
 
     }
+    const downloadFilteredData = () =>{
+        let tempList = JSON.parse(JSON.stringify(filteredPlayerList));
+        let filteredList = [];
+        tempList.map((data)=>{
+            if(data.chestNumber != "NO"){
+                let obj = {
+                    CHEST_NUMBER: data.chestNumber,
+                    NAME:data.name,
+                    EVENT: playerCategory,
+                    CLUB:  data.clubName
+                };
+                filteredList.push(obj);
+            }
+            
+            
+        })
+
+        exportToExcel(filteredList, 'filteredList')
+    }
     return (
         <div>
+            <div>
+                <button onClick={()=>{updateChestDB()}}>UPDATE</button>
+            </div>
             {
                 playersState?.authStatus === "ADMIN_ACCESS" || playersState?.authStatus === "SUPER_ADMIN_ACCESS" ? (
                     // true ? (
@@ -238,7 +273,7 @@ const PlayerListComponent = () => {
 
                                 </Dropdown.Menu>
                             </Dropdown>
-                            <Button variant="primary" onClick={()=>{exportToExcel(filteredPlayerList, 'filteredList')}}>Download</Button>
+                            <Button variant="primary" onClick={()=>{downloadFilteredData()}}>Download</Button>
 
                         </div>
                         
@@ -248,10 +283,12 @@ const PlayerListComponent = () => {
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
+                                        <th>DOB</th>
+                                        <th>Mobile</th>
                                         <th>Category</th>
                                         <th>Chest No</th>
                                         <th>ClubName</th>
-                                        <th>Events</th>
+                                        <th>Event</th>
                                         <th>Pay Status</th>
                                         <th>Created_ON</th>
                                         <th>Action</th>
@@ -271,13 +308,15 @@ const PlayerListComponent = () => {
                                                     >
                                                         <td>{tableIndex}</td>
                                                         <td>{player.name}</td>
+                                                        <td>{player.dob}</td>
+                                                        <td>{player.mobile}</td>
                                                         <td>{player.playerCategory}</td>
                                                         <td>{player.chestNumber}</td>
                                                         <td>{player.clubName}</td>
                                                         {
                                                             player?.selectedEvents?.length ? 
                                                             (<td>{player?.selectedEvents.map((event, eIndex) => {
-                                                                return (<div key={eIndex}>{event.eventName}</div>)
+                                                                return (<span key={eIndex}>{event.eventName}, </span>)
                                                             })}</td>) : ""
                                                         }
                                                         
@@ -287,7 +326,7 @@ const PlayerListComponent = () => {
                                                         {
                                                             playersState?.authStatus === "SUPER_ADMIN_ACCESS" && (
                                                                     <td>
-                                                                        <Button variant="primary" onClick={()=>{editPlayer(player)}}>Payment Update</Button>
+                                                                        <Button variant="primary" onClick={()=>{viewPlayer(player)}}>Payment Update</Button>
                                                                     </td>
                                                             )
                                                         }
